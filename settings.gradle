@@ -1,3 +1,4 @@
 rootProject.name = 'cargo'
-include 'functional-test'
+include 'functional-test',
+        'customer-service'
 

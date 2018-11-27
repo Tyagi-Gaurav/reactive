@@ -5,3 +5,4 @@ Feature: Book a Cargo
     When the customer attempts to book a cargo
     Then the cargo should be booked
     And the customer should provided a tracking Id
+

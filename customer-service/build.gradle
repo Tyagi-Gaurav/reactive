@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "2.1.0.RELEASE"
+}
+
+project.ext {
+    springBootVersion = '2.1.0.RELEASE'
+}
+
+group 'gt.reactive'
+version '0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+springBoot {
+    mainClassName = "org.gt.shipping.CustomerApplication"
+}
+
+dependencies {
+    testCompile "junit:junit:4.12"
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "org.assertj:assertj-core:3.8.0"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+}
