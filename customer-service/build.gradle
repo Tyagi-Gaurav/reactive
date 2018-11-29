@@ -7,6 +7,11 @@ project.ext {
     springBootVersion = '2.1.0.RELEASE'
 }
 
+bootJar {
+    baseName = 'shipping-customer-service'
+    version = '0.0.1'
+}
+
 group 'gt.reactive'
 version '0.1-SNAPSHOT'
 
