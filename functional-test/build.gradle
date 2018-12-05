@@ -27,6 +27,7 @@ dependencies {
     testCompile "io.cucumber:cucumber-spring:$cucumberSpringVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     testCompile "com.fasterxml.jackson.core:jackson-core:2.9.7"
     testCompile (project(':customer-service').sourceSets.main.output)
 }
