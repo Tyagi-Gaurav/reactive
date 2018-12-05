@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/org/gt/shipping/"},
         plugin = {"pretty", "html:target/cucumber"})
-public class RunCucumberTest {
+public class RunCucumber {
 }

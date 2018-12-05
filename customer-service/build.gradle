@@ -8,12 +8,11 @@ project.ext {
 }
 
 bootJar {
-    baseName = 'shipping-customer-service'
-    version = '0.0.1'
+    baseName = 'customer-service'
 }
 
 group 'gt.reactive'
-version '0.1-SNAPSHOT'
+project.version = scmVersion.version
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

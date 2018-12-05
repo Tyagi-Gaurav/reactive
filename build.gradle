@@ -1,9 +1,18 @@
 plugins {
     id 'java'
+    id 'pl.allegro.tech.build.axion-release' version '1.10.0'
+    id 'idea'
+}
+
+scmVersion {
+    tag {
+        prefix = project.name
+    }
+
+    versionIncrementer 'incrementMinor'
 }
 
 group 'gt.reactive'
-version '0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

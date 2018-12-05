@@ -1,6 +1,5 @@
 package org.gt.shipping.stepdefs;
 
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import org.gt.shipping.BaseFunctionalTest;
 import org.gt.shipping.service.CustomerServiceClient;

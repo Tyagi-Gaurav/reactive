@@ -9,7 +9,6 @@ project.ext {
 }
 
 group 'gt.reactive'
-version '0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -17,6 +16,8 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
+test.enabled = false
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -27,5 +28,5 @@ dependencies {
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     testCompile "com.fasterxml.jackson.core:jackson-core:2.9.7"
-    testCompile (project(path: ':customer-service'))
+    testCompile (project(':customer-service').sourceSets.main.output)
 }
