@@ -9,7 +9,7 @@ import org.gt.shipping.service.CustomerServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
-@Scope("cucumber-glue")fe
+@Scope("cucumber-glue")
 public class CustomerStepDefs extends BaseFunctionalTest implements En {
     @Autowired
     private CustomerServiceClient customerServiceClient;

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class CustomerServiceClient {
 
     private final String CONTENT_TYPE = "application/vnd.customer.register.v1+json";
+
     @LocalServerPort
     private int port;
 
@@ -31,15 +32,7 @@ public class CustomerServiceClient {
     public RequestCallback registerRequest() {
         return request -> {
             request.getHeaders().add(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE);
-            request.getBody().write();
-        };
-    }
 
-    @Value.Immutable
-    public abstract class TestCustomerRegisterRequest {
-        public abstract String firstName();
-        public abstract String lastName();
-        public abstract String email();
-        public abstract String mobile();
+        };
     }
 }
