@@ -1,15 +1,14 @@
 package org.gt.shipping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.gt.shipping.system.IdentityRequestCallback;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.client.RequestCallback;
@@ -32,12 +31,21 @@ public abstract class BaseFunctionalTest {
 
     private ResponseResult lastResponse;
     private ObjectMapper objectMapper = new ObjectMapper();
+    private RequestCallback requestCallback = new IdentityRequestCallback();
 
-    protected void executeGet(String url, RequestCallback requestCallback) {
+    protected void executeGet(String url) {
         ResponseExtractor<ResponseResult> responseExtractor = ResponseResult::new;
         lastResponse = testRestTemplate.execute(url,
                 HttpMethod.GET,
                 requestCallback,
+                responseExtractor);
+    }
+
+    protected void executePost(String url, RequestCallback entityRequestCallback) {
+        ResponseExtractor<ResponseResult> responseExtractor = ResponseResult::new;
+        lastResponse = testRestTemplate.execute(url,
+                HttpMethod.POST,
+                entityRequestCallback,
                 responseExtractor);
     }
 

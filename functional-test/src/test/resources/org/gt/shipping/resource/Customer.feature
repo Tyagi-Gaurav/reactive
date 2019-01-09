@@ -5,15 +5,13 @@ Feature: Customer registration
 #    When customer attempts to register with the application
 #    Then they are registered with a default price plan
 #
-#  Scenario: Customer logs in using valid credentials and gets a security token in response
+#  Scenario: Customer logs in using valid credentials and logs in successfully
 #    Given customer is already registered with the application
 #    And customer intends to login with the application using valid credentials
 #    And customer attempts to login with the application
-#    Then a response with status code 200 is returned
-#    And the response header contains a security token
-#    And the database has customer information stored in it
+#    Then a success response is returned
 #
-#  Scenario: Customer logs in using invalid credentials and gets a
+#  Scenario: Customer logs in using invalid credentials and gets an error
 #    Given customer intends to login with the application using invalid credentials
 #    And customer attempts to login with the application
 #    Then a response with status code 401 is returned

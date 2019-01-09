@@ -3,7 +3,6 @@ package org.gt.shipping.stepdefs;
 import cucumber.api.java8.En;
 import org.gt.shipping.BaseFunctionalTest;
 import org.gt.shipping.service.CustomerServiceClient;
-import org.gt.shipping.system.IdentityRequestCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ public class HealthCheckStepDefs extends BaseFunctionalTest implements En {
 
     public HealthCheckStepDefs() {
         When("^healthcheck endpoint for customer service is invoked$", () -> {
-            executeGet(customerServiceClient.healthcheckUrl(), new IdentityRequestCallback());
+            executeGet(customerServiceClient.healthcheckUrl());
         });
 
         Then("^a status of (\\d+) is returned$", (Integer arg0) -> {

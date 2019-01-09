@@ -25,6 +25,7 @@ dependencies {
     testCompile "io.cucumber:cucumber-junit:$cucumberVersion"
     testCompile "io.cucumber:cucumber-core:$cucumberVersion"
     testCompile "io.cucumber:cucumber-spring:$cucumberSpringVersion"
+    testCompile "org.immutables:value:2.7.3"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
