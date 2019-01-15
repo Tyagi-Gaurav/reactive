@@ -1,14 +1,10 @@
 package org.gt.shipping.service;
 
-import org.immutables.value.Value;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.client.ClientHttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RequestCallback;
-
-import java.io.IOException;
 
 @Scope("cucumber-glue")
 @Controller

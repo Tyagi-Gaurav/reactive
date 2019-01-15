@@ -1,7 +1,33 @@
 plugins {
-    id 'java'
     id 'pl.allegro.tech.build.axion-release' version '1.10.0'
-    id 'idea'
+
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "findbugs"
+
+    findbugs {
+        toolVersion = "3.0.1"
+        ignoreFailures = true
+        effort = "max"
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    group 'gt.reactive'
+
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
 }
 
 scmVersion {
@@ -16,10 +42,6 @@ group 'gt.reactive'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'

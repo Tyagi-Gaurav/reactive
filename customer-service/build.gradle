@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id "org.springframework.boot" version "2.1.0.RELEASE"
 }
 
@@ -11,15 +10,7 @@ bootJar {
     baseName = 'customer-service'
 }
 
-group 'gt.reactive'
 project.version = scmVersion.version
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
 
 springBoot {
     mainClassName = "org.gt.shipping.CustomerApplication"
