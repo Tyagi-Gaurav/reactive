@@ -1,3 +1,4 @@
+@wip
 Feature: Customer registration
 
 #  Scenario: Customer registers without a price plan

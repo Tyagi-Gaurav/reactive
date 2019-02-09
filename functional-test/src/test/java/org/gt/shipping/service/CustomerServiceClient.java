@@ -10,7 +10,7 @@ import org.springframework.web.client.RequestCallback;
 @Controller
 public class CustomerServiceClient {
 
-    private final String CONTENT_TYPE = "application/vnd.customer.register.v1+json";
+    private static final String CONTENT_TYPE = "application/vnd.customer.register.v1+json";
 
     @LocalServerPort
     private int port;

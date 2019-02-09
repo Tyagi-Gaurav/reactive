@@ -1,4 +1,5 @@
 rootProject.name = 'cargo'
 include 'functional-test',
         'customer-service'
+include 'cargo-service'
 

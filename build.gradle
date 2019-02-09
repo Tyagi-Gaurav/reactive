@@ -14,7 +14,7 @@ allprojects {
 
     findbugs {
         toolVersion = "3.0.1"
-        ignoreFailures = true
+        ignoreFailures = false
         effort = "max"
     }
 
@@ -46,3 +46,5 @@ targetCompatibility = 1.8
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+defaultTasks 'clean', 'test', 'build'
