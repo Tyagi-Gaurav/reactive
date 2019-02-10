@@ -13,7 +13,7 @@ bootJar {
 project.version = scmVersion.version
 
 springBoot {
-    mainClassName = "org.gt.shipping.CargoServiceApplication"
+    mainClassName = "org.gt.shipping.cargo.CargoServiceApplication"
 }
 
 
@@ -23,4 +23,6 @@ dependencies {
     testCompile "org.assertj:assertj-core:3.8.0"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    compile "org.projectlombok:lombok:1.18.4"
+
 }
