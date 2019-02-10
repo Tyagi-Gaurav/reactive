@@ -2,4 +2,6 @@ rootProject.name = 'cargo'
 include 'functional-test',
         'customer-service'
 include 'cargo-service'
+include 'kafka-client'
+include 'audit-service'
 

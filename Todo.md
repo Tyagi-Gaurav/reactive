@@ -1,13 +1,13 @@
 ### Todo
 - [ ] Create infrastructure for test environment
-    - [ ] Versioning each project
+    - [x] Versioning each project
     - [ ] Creating build info for each microservice
     - [ ] Create a semi functional Cargo service that accepts a request and
     returns a dummy response. Send kafka event
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Deploy the cargo service using docker locally.
     - [ ] Kafka/Zookeeper stack
-- Free using Swiss pass.
+    - [ ] Pipeline for project
 - [ ] Service Discovery
 - [ ] Service Gateway
 - [ ] Distributed Tracing

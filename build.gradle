@@ -27,6 +27,12 @@ allprojects {
             html.enabled = true
         }
     }
+
+    project.version = scmVersion.version
+
+    project.ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
 }
 
 scmVersion {
