@@ -4,4 +4,5 @@ include 'functional-test',
 include 'cargo-service'
 include 'kafka-client'
 include 'audit-service'
+include 'configserver'
 

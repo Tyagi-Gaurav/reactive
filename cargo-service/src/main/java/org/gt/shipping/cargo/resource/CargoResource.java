@@ -10,6 +10,7 @@ public class CargoResource {
 
     @RequestMapping(method = {RequestMethod.POST}, value = {"/book"})
     public BookingResponseDTO book() {
+        //Todo How to inject dependencies?
 
         return new BookingResponseDTO("paymentTxId", "BookingId");
     }
