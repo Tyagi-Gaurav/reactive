@@ -1,15 +1,16 @@
 server:
-  port: 8080
+  port: 8888
 spring:
-  application:
-    name: kafkaclient
   profiles:
     active: native
   cloud:
     config:
       server:
           native:
-            searchLocations: file:///Users/gauravt/workspace/reactive/configserver/src/main/resources/config/kafkaclient
+            searchLocations:
+              file:///Users/gauravt/workspace/reactive/configserver/src/main/resources/config/kafka-client,
+              file:///Users/gauravt/workspace/reactive/configserver/src/main/resources/config/cargo-service
+
 logging:
   level:
     root: INFO

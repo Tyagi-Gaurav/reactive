@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: cargo-service
+  profiles:
+    active: native
+  cloud:
+    config:
+      label: dev
+      uri: http://localhost:8888

@@ -1,16 +1,18 @@
 ### Todo
 - [ ] Create infrastructure for test environment
-    - [ ] Create a config server that can be used to retrieve
-        config from a configuration repo. For now, use local
-        file based repository.
-    - [ ] Creating build info for each microservice
     - [ ] Create a semi functional Cargo service that accepts a request and
     returns a dummy response. Send kafka event
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Deploy the cargo service using docker locally.
     - [ ] Kafka/Zookeeper stack
     - [ ] Pipeline for project
+    - [ ] Creating build info for each microservice
+    - [x] Create a config server that can be used to retrieve
+            config from a configuration repo. For now, use local
+            file based repository.
     - [x] Versioning each project
+- [ ] Encrypt properties for database passwords
+- [ ] Expose right level of detail in /env endpoint
 - [ ] Service Discovery
 - [ ] Service Gateway
 - [ ] Distributed Tracing

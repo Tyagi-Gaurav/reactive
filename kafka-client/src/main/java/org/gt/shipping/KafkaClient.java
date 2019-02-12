@@ -9,13 +9,12 @@ import java.util.Properties;
 
 public class KafkaClient implements MessagingClient {
 
-    private Properties kafkaConfig;
-    private KafkaProducer<String, String> kafkaProducer; //TODO create provider
+    private KafkaProducer<String, String> kafkaProducer;
 
-    public KafkaClient() {
-        kafkaConfig = new Properties();
+    public KafkaClient(String bootStrapHost) {
+        Properties kafkaConfig = new Properties();
 
-        kafkaConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); //TODO read kafka host from config
+        kafkaConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapHost);
         kafkaConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         kafkaConfig.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -26,7 +25,7 @@ public class KafkaClient implements MessagingClient {
     @Override
     public void sendMessage(String content, MessageMetaData metaData) {
         //TODO Topic name to be derived from metadata
-        kafkaProducer.send(new ProducerRecord<>("test", content));
+        kafkaProducer.send(new ProducerRecord<>("new_topic", content));
     }
 
     @Override
