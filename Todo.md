@@ -1,17 +1,21 @@
 ### Todo
 - [ ] Create infrastructure for test environment
-    - [ ] Create a semi functional Cargo service that accepts a request and
-    returns a dummy response. Send kafka event
-    - [ ] Create a semi functional audit service that reads the event and prints it.
-    - [ ] Deploy the cargo service using docker locally.
-    - [ ] Kafka/Zookeeper stack
+    - [ ] Create a dummy routing service with a dummy method call that is invoked directly from cargo service.
+    - [ ] Create service discovery project using Spring cloud and Netflix Eureka
+    - [ ] Deploy the config service using docker-compose locally.
+    - [ ] Deploy Kafka/Zookeeper stack using docker-compose locally
+    - [ ] Deploy the cargo service using docker-compose locally.
+    - [ ] Create separate infrastructure project to run docker commands
     - [ ] Pipeline for project
+    - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice
     - [x] Create a config server that can be used to retrieve
             config from a configuration repo. For now, use local
             file based repository.
     - [x] Versioning each project
-- [ ] Encrypt properties for database passwords
+    - [x] Create a semi functional Cargo service that accepts a request and
+        returns a dummy response. Send kafka event
+- [ ] Encrypt properties for database passwords (See Spring cloud Config encryption)
 - [ ] Expose right level of detail in /env endpoint
 - [ ] Service Discovery
 - [ ] Service Gateway
@@ -19,7 +23,6 @@
 - [ ] Continuous Integration
 - [ ] JWT Tokens and OAuth2
 - [ ] Service Gateway??
-- [ ] Service Discovery
 - [ ] Metrics
 - [ ] Alerting
 - [ ] Micros Service(s):

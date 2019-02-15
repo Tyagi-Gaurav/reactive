@@ -5,4 +5,5 @@ include 'cargo-service'
 include 'kafka-client'
 include 'audit-service'
 include 'configserver'
+include 'infrastructure'
 
