@@ -1,7 +1,7 @@
 ### Todo
 - [ ] Create infrastructure for test environment
-    - [ ] Create a dummy routing service with a dummy method call that is invoked directly from cargo service.
     - [ ] Create service discovery project using Spring cloud and Netflix Eureka
+    - [ ] Invoke routing service using service discovery from cargo service.
     - [ ] Deploy the config service using docker-compose locally.
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose locally
     - [ ] Deploy the cargo service using docker-compose locally.
@@ -9,6 +9,7 @@
     - [ ] Pipeline for project
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice
+    - [x] Create a dummy routing service with a dummy method call
     - [x] Create a config server that can be used to retrieve
             config from a configuration repo. For now, use local
             file based repository.

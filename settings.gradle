@@ -6,4 +6,5 @@ include 'kafka-client'
 include 'audit-service'
 include 'configserver'
 include 'infrastructure'
+include 'routing-service'
 

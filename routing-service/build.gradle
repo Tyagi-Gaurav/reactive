@@ -1,0 +1,22 @@
+plugins {
+    id "org.springframework.boot" version "2.1.0.RELEASE"
+}
+
+bootJar {
+    baseName = 'cargo-service'
+}
+
+springBoot {
+    mainClassName = "org.gt.shipping.routing.RoutingServiceApplication"
+}
+
+dependencies {
+    testCompile "junit:junit:4.12"
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "org.assertj:assertj-core:3.8.0"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    compile "org.springframework.cloud:spring-cloud-context:$springBootVersion"
+    compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
+    compile "org.projectlombok:lombok:1.18.4"
+}
