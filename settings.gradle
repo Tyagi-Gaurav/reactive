@@ -7,4 +7,5 @@ include 'audit-service'
 include 'configserver'
 include 'infrastructure'
 include 'routing-service'
+include 'service-discovery'
 

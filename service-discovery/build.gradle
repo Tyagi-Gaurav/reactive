@@ -1,14 +1,13 @@
-
 plugins {
     id "org.springframework.boot" version "2.1.0.RELEASE"
 }
 
 bootJar {
-    baseName = 'config-service'
+    baseName = 'service-discovery-service'
 }
 
 springBoot {
-    mainClassName = "org.gt.shipping.config.ConfigServiceApplication"
+    mainClassName = "org.gt.shipping.servicediscovery.ServiceDiscoveryApplication"
 }
 
 dependencies {
@@ -20,4 +19,8 @@ dependencies {
     compile "org.projectlombok:lombok:1.18.4"
     compile "org.springframework.cloud:spring-cloud-starter-config:$springBootVersion"
     compile "org.springframework.cloud:spring-cloud-config-server:$springBootVersion"
+    compile ("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion") {
+        exclude group : "javax.servlet", module: "servlet-api"
+        exclude group : "com.google.code.gson", module: "gson"
+    }
 }

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: routingservice
+  profiles:
+    active:
+      default
+
+
