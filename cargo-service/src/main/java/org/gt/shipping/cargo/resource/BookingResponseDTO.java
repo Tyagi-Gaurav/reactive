@@ -8,4 +8,5 @@ import lombok.Data;
 public class BookingResponseDTO {
     private String paymentTransactionId;
     private String bookingId;
+    private String routingId;
 }

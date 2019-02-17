@@ -20,4 +20,7 @@ dependencies {
     compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
     compile "org.projectlombok:lombok:1.18.4"
     compile project(":kafka-client")
+    compile ("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springBootVersion") {
+        exclude group : "com.google.code.gson", module: "gson"
+    }
 }

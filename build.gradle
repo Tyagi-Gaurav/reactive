@@ -21,6 +21,8 @@ allprojects {
     targetCompatibility = 1.8
     group 'gt.reactive'
 
+    // group = "gt.reactive.${githubProjectName}"
+
     tasks.withType(FindBugs) {
         reports {
             xml.enabled = false
@@ -32,6 +34,12 @@ allprojects {
 
     project.ext {
         springBootVersion = '2.1.0.RELEASE'
+    }
+
+    jar {
+        manifest {
+            attributes('Build-Time-ISO-8601': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"))
+        }
     }
 }
 

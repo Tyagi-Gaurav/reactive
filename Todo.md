@@ -8,7 +8,7 @@
     - [ ] Hystrix chapter and use hystrix for invoking downstreams
     - [ ] Create separate infrastructure project to run docker commands
     - [ ] Create a semi functional audit service that reads the event and prints it.
-    - [ ] Creating build info for each microservice
+    - [ ] Creating build info for each microservice (/actuator/info)
     - [x] Create service discovery project using Spring cloud and Netflix Eureka
     - [x] Create a dummy routing service with a dummy method call
     - [x] Create a config server that can be used to retrieve
@@ -17,6 +17,7 @@
     - [x] Versioning each project
     - [x] Create a semi functional Cargo service that accepts a request and
         returns a dummy response. Send kafka event
+- [ ] Healthcheck of all services
 - [ ] Encrypt properties for database passwords (See Spring cloud Config encryption)
 - [ ] Expose right level of detail in /env endpoint
 - [ ] Service Discovery
