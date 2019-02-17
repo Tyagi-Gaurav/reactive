@@ -1,6 +1,6 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for test environment
-    - [ ] Invoke routing service using service discovery from cargo service.
+    - [x] Invoke routing service using service discovery from cargo service.
     - [ ] Deploy the config service using docker-compose locally.
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose locally
     - [ ] Deploy the cargo service using docker-compose locally.
