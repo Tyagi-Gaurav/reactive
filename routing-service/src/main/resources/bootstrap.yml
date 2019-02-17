@@ -1,8 +1,9 @@
 spring:
   application:
-    name: routingservice
+    name: routing-service
   profiles:
-    active:
-      default
-
-
+    active: native
+  cloud:
+    config:
+      label: dev
+      uri: http://localhost:8888
