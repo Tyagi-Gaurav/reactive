@@ -18,6 +18,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     compile "org.springframework.cloud:spring-cloud-context:$springBootVersion"
     compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springBootVersion"
+    compile "com.netflix.hystrix:hystrix-javanica:1.5.18"
     compile "org.projectlombok:lombok:1.18.4"
     compile project(":kafka-client")
     compile ("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springBootVersion") {

@@ -1,0 +1,52 @@
+package org.gt.shipping.cargo.routing;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Random;
+
+@Service
+public class RoutingService {
+    private Logger logger = LoggerFactory.getLogger(RoutingService.class);
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="1000")
+    })
+    public String getRoutingId() {
+        randomRunLong();
+        ResponseEntity<String> exchange = restTemplate.exchange(
+                "http://routing-service/v1/shipping/routing/",
+                HttpMethod.POST,
+                null,
+                String.class);
+
+        return exchange.getBody();
+    }
+
+    private void randomRunLong() {
+        Random random = new Random();
+        int randomNum = random.nextInt(3) + 1;
+        logger.info("Random Number {}", randomNum);
+
+        if (randomNum == 3) sleep();
+    }
+
+    private void sleep() {
+        try {
+            logger.info("Sleeping ...");
+            Thread.sleep(11000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
