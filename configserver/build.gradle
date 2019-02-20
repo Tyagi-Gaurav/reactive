@@ -7,6 +7,13 @@ bootJar {
     baseName = 'config-service'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.gt.shipping.config.ConfigServiceApplication'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
 springBoot {
     mainClassName = "org.gt.shipping.config.ConfigServiceApplication"
 }

@@ -19,9 +19,23 @@ public class RoutingService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @HystrixCommand(commandProperties = {
-            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="1000")
-    })
+    @HystrixCommand(
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "75"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "7000"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "15000"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "5")
+
+            },
+            fallbackMethod = "defaultRoutingId",
+            threadPoolKey = "routingService",
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value="30"),
+                    @HystrixProperty(name = "maxQueueSize", value="10")
+            }
+    )
     public String getRoutingId() {
         randomRunLong();
         ResponseEntity<String> exchange = restTemplate.exchange(
@@ -31,6 +45,10 @@ public class RoutingService {
                 String.class);
 
         return exchange.getBody();
+    }
+
+    private String defaultRoutingId() {
+        return "myId";
     }
 
     private void randomRunLong() {

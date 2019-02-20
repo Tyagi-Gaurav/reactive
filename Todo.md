@@ -1,14 +1,20 @@
 ### Todo
-- [ ] Create infrastructure with all service skeletons for test environment
-    - [x] Invoke routing service using service discovery from cargo service.
-    - [ ] Deploy the config service using docker-compose locally.
-    - [ ] Deploy Kafka/Zookeeper stack using docker-compose locally
-    - [ ] Deploy the cargo service using docker-compose locally.
-    - [ ] Pipeline for project (build, test, tag, deploy)
-    - [ ] Hystrix chapter and use hystrix for invoking downstreams
-    - [ ] Create separate infrastructure project to run docker commands
+- [ ] Create infrastructure with all service skeletons for dev environment
+    - [ ] Hystrix chapter and use hystrix for invoking downstreams from cargo service
+    - [ ] Deploy the config service using docker-compose local dev environment (Manual).
+    - [ ] Deploy the service discovery service using docker-compose local dev environment (Manual).
+    - [ ] Deploy Kafka/Zookeeper stack using docker-compose local dev environment (Manual).
+    - [ ] Deploy the routing service using docker-compose local dev environment (Manual).
+    - [ ] Make routing service communicate with config service and service discovery (Manual).
+    - [ ] Make routing service communicate with config service and service discovery (Manual).
+    - [ ] Deploy the cargo service using docker-compose local dev environment (Manual).
+    - [ ] Pipeline for project (build, test, tag, release, deploy to docker)
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)
+    - [ ] Send to kafka to be wrapped in Hystrix
+    - [ ] Move common code out into libraries. Eg. Hystrix, Filters.
+    - [x] Create separate infrastructure project to run docker commands
+    - [x] Invoke routing service using service discovery from cargo service.
     - [x] Create service discovery project using Spring cloud and Netflix Eureka
     - [x] Create a dummy routing service with a dummy method call
     - [x] Create a config server that can be used to retrieve
@@ -18,6 +24,12 @@
     - [x] Create a semi functional Cargo service that accepts a request and
         returns a dummy response. Send kafka event
 - [ ] Healthcheck of all services
+- [ ] Missing Tests
+    - [ ] Cargo Resource
+    - [ ] Routing Resource
+    - [ ] Cargo Hystrix
+    - [ ] Service Discovery
+    - [ ] Config Service
 - [ ] Encrypt properties for database passwords (See Spring cloud Config encryption)
 - [ ] Expose right level of detail in /env endpoint
 - [ ] Service Discovery
