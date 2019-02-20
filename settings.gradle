@@ -8,4 +8,5 @@ include 'configserver'
 include 'infrastructure'
 include 'routing-service'
 include 'service-discovery'
+include 'service-gateway'
 

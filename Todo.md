@@ -1,6 +1,7 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Hystrix chapter and use hystrix for invoking downstreams from cargo service
+    - [ ] Services Gateway chapter
+    - [ ] Update infrastructure diagram with nodes of Service Gateway
     - [ ] Deploy the config service using docker-compose local dev environment (Manual).
     - [ ] Deploy the service discovery service using docker-compose local dev environment (Manual).
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose local dev environment (Manual).
@@ -13,6 +14,7 @@
     - [ ] Creating build info for each microservice (/actuator/info)
     - [ ] Send to kafka to be wrapped in Hystrix
     - [ ] Move common code out into libraries. Eg. Hystrix, Filters.
+    - [x] Hystrix chapter and use hystrix for invoking downstreams from cargo service
     - [x] Create separate infrastructure project to run docker commands
     - [x] Invoke routing service using service discovery from cargo service.
     - [x] Create service discovery project using Spring cloud and Netflix Eureka

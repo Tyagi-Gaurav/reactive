@@ -1,0 +1,12 @@
+server:
+  port: 5555
+
+spring:
+  application:
+    name: service-discovery
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
