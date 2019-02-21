@@ -39,7 +39,7 @@ public class RoutingService {
     public String getRoutingId() {
         randomRunLong();
         ResponseEntity<String> exchange = restTemplate.exchange(
-                "http://routing-service/",
+                "http://routing-service/v1/shipping/routing/",
                 HttpMethod.POST,
                 null,
                 String.class);
@@ -47,7 +47,9 @@ public class RoutingService {
         return exchange.getBody();
     }
 
-    private String defaultRoutingId() {
+    private String defaultRoutingId(Throwable throwable) {
+        logger.error("Call short circuited..using fallback due to exception");
+        logger.error(throwable.getMessage(), throwable);
         return "myId";
     }
 

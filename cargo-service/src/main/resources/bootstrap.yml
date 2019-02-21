@@ -7,3 +7,7 @@ spring:
     config:
       label: dev
       uri: http://localhost:8888
+
+logging:
+  level:
+    root: INFO

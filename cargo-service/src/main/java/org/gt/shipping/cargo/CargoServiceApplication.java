@@ -1,5 +1,6 @@
 package org.gt.shipping.cargo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -13,11 +14,13 @@ import org.springframework.web.client.RestTemplate;
 @RefreshScope
 @EnableDiscoveryClient
 @EnableCircuitBreaker
+@Slf4j
 public class CargoServiceApplication {
 
     @LoadBalanced
     @Bean
     public RestTemplate getRestTemplate() {
+        log.info("Creating load balanced rest client");
         return new RestTemplate();
     }
 

@@ -21,6 +21,8 @@ public class ThreadLocalConfiguration {
         HystrixEventNotifier eventNotifier = HystrixPlugins.getInstance().getEventNotifier();
         HystrixMetricsPublisher metricsPublisher = HystrixPlugins.getInstance().getMetricsPublisher();
 
+        HystrixPlugins.reset();
+
         HystrixPlugins.getInstance().registerConcurrencyStrategy(new ThreadLocalAwareConcurrencyStrategy(existingConcurrencyStrategy));
         HystrixPlugins.getInstance().registerCommandExecutionHook(commandExecutionHook);
         HystrixPlugins.getInstance().registerEventNotifier(eventNotifier);
