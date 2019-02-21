@@ -3,7 +3,13 @@ server:
 
 spring:
   application:
-    name: service-discovery
+    name: service-gateway
+  profiles:
+    active: native
+  cloud:
+    config:
+      label: dev
+      uri: http://localhost:8888
 
 management:
   endpoints:

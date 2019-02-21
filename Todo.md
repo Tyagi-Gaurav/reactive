@@ -1,5 +1,7 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
+    - [ ] Zuul not accessing config service
+    - [ ] Cargo services not starting up
     - [ ] Services Gateway chapter
     - [ ] Update infrastructure diagram with nodes of Service Gateway
     - [ ] Deploy the config service using docker-compose local dev environment (Manual).
@@ -13,7 +15,7 @@
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)
     - [ ] Send to kafka to be wrapped in Hystrix
-    - [ ] Move common code out into libraries. Eg. Hystrix, Filters.
+    - [ ] Move common code out into libraries or service gateway. Eg. Hystrix, Filters.
     - [x] Hystrix chapter and use hystrix for invoking downstreams from cargo service
     - [x] Create separate infrastructure project to run docker commands
     - [x] Invoke routing service using service discovery from cargo service.

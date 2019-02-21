@@ -39,7 +39,7 @@ public class RoutingService {
     public String getRoutingId() {
         randomRunLong();
         ResponseEntity<String> exchange = restTemplate.exchange(
-                "http://routing-service/v1/shipping/routing/",
+                "http://routing-service/",
                 HttpMethod.POST,
                 null,
                 String.class);
