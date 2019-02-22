@@ -43,3 +43,12 @@ dependencies {
     testCompile "com.fasterxml.jackson.core:jackson-core:2.9.7"
     testCompile (project(':customer-service').sourceSets.main.output)
 }
+
+task functional() {
+    doLast {
+        workingDir "$rootDir/functional-test"
+        commandLine "java","-cp",
+                "build/classes/java/test",
+                "org.gt.shipping.CucumberParallelRunner"
+    }
+}

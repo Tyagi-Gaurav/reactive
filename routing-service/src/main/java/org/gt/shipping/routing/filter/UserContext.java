@@ -1,4 +1,4 @@
-package org.gt.shipping.cargo.filter;
+package org.gt.shipping.routing.filter;
 
 
 import lombok.Getter;
