@@ -43,6 +43,8 @@ public class TrackingFilter extends ZuulFilter {
 
         RequestContext currentContext = RequestContext.getCurrentContext();
         log.info("Processing incoming request for {}", currentContext.getRequest().getRequestURI());
+        log.info("Processing incoming request for {}", currentContext.getRequest().getRemoteHost());
+        log.info("Processing incoming request for {}", currentContext.getRequest().getRemotePort());
 
         return null;
     }

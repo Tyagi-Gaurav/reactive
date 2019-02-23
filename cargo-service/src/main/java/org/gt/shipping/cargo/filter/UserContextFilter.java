@@ -25,7 +25,7 @@ public class UserContextFilter implements Filter {
 
     private UUID getUUIDFromHeader(HttpServletRequest httpServletRequest) {
         String header = httpServletRequest.getHeader(Headers.REQUEST_ID.getValue());
-        log.trace("RequestId from request {}", header);
+        log.info("RequestId from request {}", header);
 
         if (header == null) {
             return UUID.randomUUID();
