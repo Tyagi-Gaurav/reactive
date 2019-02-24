@@ -1,11 +1,17 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
+    - [ ] Change config service to use github for config
+    - [ ] Deploy the config service using docker-compose local dev environment (Manual).
+    - [ ] Access config of services from config service when it runs inside docker container
+    - [ ] Deploy eureka into container. Access config service from eureka.
+    - [ ] Specify host of config service in eureka as environment variable.
+    - [ ] Exclude test in buildImageDependencies
+    - [ ] Move common code out into libraries. Eg. Hystrix, Filters.
+    - [ ] Write a gradle task that starts up the application locally for test
     - [ ] Write a single end to end test to verify that everything is working
      - [ ] Booking call returns relevant details
      - [ ] Config service has config for all services
-    - [ ] Services Gateway chapter
     - [ ] Update infrastructure diagram with nodes of Service Gateway
-    - [ ] Deploy the config service using docker-compose local dev environment (Manual).
     - [ ] Deploy the service discovery service using docker-compose local dev environment (Manual).
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose local dev environment (Manual).
     - [ ] Deploy the routing service using docker-compose local dev environment (Manual).
@@ -16,7 +22,7 @@
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)
     - [ ] Send to kafka to be wrapped in Hystrix
-    - [ ] Move common code out into libraries or service gateway. Eg. Hystrix, Filters.
+    - [x] Services Gateway chapter
     - [x] Zuul not accessing config service
     - [x] Hystrix chapter and use hystrix for invoking downstreams from cargo service
     - [x] Create separate infrastructure project to run docker commands
@@ -37,6 +43,7 @@
     - [ ] Cargo Hystrix
     - [ ] Service Discovery
     - [ ] Config Service
+    - [ ] Smoke tests for config service whether it can read config from github
 - [ ] Encrypt properties for database passwords (See Spring cloud Config encryption)
 - [ ] Expose right level of detail in /env endpoint
 - [ ] Service Discovery

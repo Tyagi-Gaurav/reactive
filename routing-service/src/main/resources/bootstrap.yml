@@ -6,4 +6,4 @@ spring:
   cloud:
     config:
       label: dev
-      uri: http://localhost:8888
+      uri: http://${CONFIG_SERVER_HOST:-localhost}:8888

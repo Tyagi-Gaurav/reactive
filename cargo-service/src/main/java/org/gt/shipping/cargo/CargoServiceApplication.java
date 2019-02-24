@@ -32,11 +32,11 @@ public class CargoServiceApplication {
 
         UserContextInterceptor userContextInterceptor = new UserContextInterceptor();
 
-        if (interceptors == null) {
-            restTemplate.setInterceptors(Collections.singletonList(userContextInterceptor));
-        } else {
+        if (interceptors != null) {
             interceptors.add(userContextInterceptor);
             restTemplate.setInterceptors(interceptors);
+        } else {
+            restTemplate.setInterceptors(Collections.singletonList(userContextInterceptor));
         }
 
         return restTemplate;
