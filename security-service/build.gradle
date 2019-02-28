@@ -7,7 +7,7 @@ bootJar {
 }
 
 springBoot {
-    mainClassName = "org.gt.shipping.security.Application"
+    mainClassName = "org.gt.shipping.security.SecurityServiceApplication"
 }
 
 dependencies {

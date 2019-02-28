@@ -5,7 +5,7 @@ spring:
     active: native
   cloud:
     config:
-      label: dev
+      label: local
       uri: http://localhost:8888
 
 logging:

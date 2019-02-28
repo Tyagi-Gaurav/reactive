@@ -2,20 +2,20 @@ server:
   port: 8888
 spring:
   profiles:
-    active: native, git
+    active: native
   cloud:
     config:
       server:
           native:
             searchLocations:
-              file:///Users/gauravt/workspace/reactive-config/config/kafka-client,
-              file:///Users/gauravt/workspace/reactive-config/config/cargo-service,
-              file:///Users/gauravt/workspace/reactive-config/config/routing-service,
-              file:///Users/gauravt/workspace/reactive-config/config/service-gateway
-          git:
-            uri: https://github.com/chonku/reactive-config
-            username: ${CONFIG_SERVER_USER_NAME:-github}
-            password: ${CONFIG_SERVER_PASSWORD:-password}
+              file:///Users/gauravt/workspace/reactive-config/config/local/kafka-client,
+              file:///Users/gauravt/workspace/reactive-config/config/local/cargo-service,
+              file:///Users/gauravt/workspace/reactive-config/config/local/routing-service,
+              file:///Users/gauravt/workspace/reactive-config/config/local/service-gateway
+#          git:
+#            uri: https://github.com/chonku/reactive-config
+#            username: ${CONFIG_SERVER_USER_NAME:-github}
+#            password: ${CONFIG_SERVER_PASSWORD:-password}
 
 logging:
   level:
