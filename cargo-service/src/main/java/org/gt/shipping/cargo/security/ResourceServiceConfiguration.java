@@ -11,10 +11,9 @@ public class ResourceServiceConfiguration extends ResourceServerConfigurerAdapte
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .anyRequest()
-                .permitAll()
                 //.antMatchers(HttpMethod.DELETE, "/v1/shipping/**")
                 //.hasRole("ADMIN")
-                .anyRequest()
+                //.anyRequest()
                 .authenticated();
     }
 }
