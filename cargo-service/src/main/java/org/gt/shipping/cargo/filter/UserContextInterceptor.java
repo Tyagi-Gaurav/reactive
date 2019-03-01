@@ -8,8 +8,9 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
-
+//TODO Test
 @Slf4j
 public class UserContextInterceptor implements ClientHttpRequestInterceptor {
     @Override
@@ -19,14 +20,14 @@ public class UserContextInterceptor implements ClientHttpRequestInterceptor {
 
         HttpHeaders headers = request.getHeaders();
         if (headers != null) {
-            UUID requestId = UserContextHolder.getContext().getRequestId();
+            Optional<UUID> requestId = Optional.ofNullable(UserContextHolder.getContext().getRequestId());
+            Optional<String> authToken = Optional.ofNullable(UserContextHolder.getContext().getAuthToken());
 
             log.info("Passing requestId to routing service {}", requestId);
+            log.info("Passing authId to routing service {}", authToken);
 
-            if (requestId != null) {
-                headers.add(Headers.REQUEST_ID.toString(),
-                        requestId.toString());
-            }
+            requestId.ifPresent(rId -> headers.add(Headers.REQUEST_ID.toString(), rId.toString()));
+            authToken.ifPresent(token -> headers.add(HttpHeaders.AUTHORIZATION, token));
         }
 
         return execution.execute(request, body);

@@ -23,4 +23,7 @@ dependencies {
         exclude group : "javax.servlet", module: "servlet-api"
         exclude group : "com.google.code.gson", module: "gson"
     }
+    compile "org.springframework.cloud:spring-cloud-security:$springBootVersion"
+    compile "org.springframework.security.oauth:spring-security-oauth2:$springBootVersion"
+    compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springBootVersion"
 }

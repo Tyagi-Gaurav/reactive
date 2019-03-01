@@ -6,6 +6,7 @@ import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestVariable;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestVariableLifecycle;
 import com.netflix.hystrix.strategy.properties.HystrixProperty;
+import lombok.extern.slf4j.Slf4j;
 import org.gt.shipping.cargo.filter.UserContextHolder;
 
 import java.util.concurrent.BlockingQueue;
@@ -13,6 +14,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class ThreadLocalAwareConcurrencyStrategy extends HystrixConcurrencyStrategy {
     private HystrixConcurrencyStrategy existingConcurrencyStrategy;
 
@@ -48,9 +50,10 @@ public class ThreadLocalAwareConcurrencyStrategy extends HystrixConcurrencyStrat
 
     @Override
     public <T> Callable<T> wrapCallable(Callable<T> callable) {
+        DelegatingUserContextCallable newCallable = new DelegatingUserContextCallable(callable, UserContextHolder.getContext());
         return existingConcurrencyStrategy != null ?
-                existingConcurrencyStrategy.wrapCallable(new DelegatingUserContextCallable(callable, UserContextHolder.getContext())) :
-                super.wrapCallable(callable);
+                existingConcurrencyStrategy.wrapCallable(newCallable) :
+                super.wrapCallable(newCallable);
     }
 
     @Override

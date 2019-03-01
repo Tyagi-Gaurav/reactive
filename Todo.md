@@ -1,6 +1,5 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Change config service to use github for config
     - [ ] Deploy the config service using docker-compose local dev environment (Manual).
     - [ ] Access config of services from config service when it runs inside docker container
     - [ ] Deploy eureka into container. Access config service from eureka.
@@ -22,6 +21,7 @@
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)
     - [ ] Send to kafka to be wrapped in Hystrix
+    - [x] Change config service to use github for config
     - [x] Services Gateway chapter
     - [x] Zuul not accessing config service
     - [x] Hystrix chapter and use hystrix for invoking downstreams from cargo service

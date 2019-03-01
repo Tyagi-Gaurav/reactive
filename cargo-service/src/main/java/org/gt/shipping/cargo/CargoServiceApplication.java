@@ -31,14 +31,14 @@ public class CargoServiceApplication {
         RestTemplate restTemplate = new RestTemplate();
 
         List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
-
-        UserContextInterceptor userContextInterceptor = new UserContextInterceptor();
+        List<ClientHttpRequestInterceptor> interceptorsList =
+                Collections.singletonList(new UserContextInterceptor());
 
         if (interceptors != null) {
-            interceptors.add(userContextInterceptor);
+            interceptors.addAll(interceptorsList);
             restTemplate.setInterceptors(interceptors);
         } else {
-            restTemplate.setInterceptors(Collections.singletonList(userContextInterceptor));
+            restTemplate.setInterceptors(interceptorsList);
         }
 
         return restTemplate;

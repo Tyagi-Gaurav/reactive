@@ -2,9 +2,9 @@ package org.gt.shipping.cargo.filter;
 
 import javax.validation.constraints.NotNull;
 
+//TODO Test
 public class UserContextHolder {
-    private static final ThreadLocal<UserContext> userContext =
-            new ThreadLocal<>();
+    private static final ThreadLocal<UserContext> userContext = new ThreadLocal<>();
 
     public static final UserContext getContext() {
         UserContext context = UserContextHolder.userContext.get();

@@ -1,10 +1,12 @@
 package org.gt.shipping.cargo.concurrency;
 
+import lombok.extern.slf4j.Slf4j;
 import org.gt.shipping.cargo.filter.UserContext;
 import org.gt.shipping.cargo.filter.UserContextHolder;
 
 import java.util.concurrent.Callable;
 
+@Slf4j
 public class DelegatingUserContextCallable<T> implements Callable<T>{
     private Callable<T> delegate;
     private UserContext context;

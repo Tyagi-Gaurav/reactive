@@ -5,5 +5,9 @@ spring:
     active: native
   cloud:
     config:
-      label: dev
-      uri: http://${CONFIG_SERVER_HOST:-localhost}:8888
+      label: local
+      uri: http://localhost:8888
+
+logging:
+  level:
+    root: INFO
