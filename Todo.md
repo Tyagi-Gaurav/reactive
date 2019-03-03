@@ -35,7 +35,9 @@
     - [x] Versioning each project
     - [x] Create a semi functional Cargo service that accepts a request and
         returns a dummy response. Send kafka event
-- [ ] Configuring hystrix timeout for each endpoint on Zuul
+- [ ] Security service to become authentication service
+- [ ] Authentication service to valid credentials with a database (For Basic Auth)
+- [ ] How should the token refresh happen?
 - [ ] Healthcheck of all services
 - [ ] Missing Tests
     - [ ] Cargo Resource

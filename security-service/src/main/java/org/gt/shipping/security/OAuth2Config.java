@@ -53,6 +53,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
         endpoints.tokenStore(tokenStore)
                 .accessTokenConverter(jwtAccessTokenConverter)
+                .tokenEnhancer(tokenEnhancerChain)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }
