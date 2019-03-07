@@ -32,5 +32,7 @@ dependencies {
     compile "org.springframework.cloud:spring-cloud-security:$springBootVersion"
     compile "org.springframework.security.oauth:spring-security-oauth2:$springBootVersion"
     compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springBootVersion"
+    compile "org.springframework.cloud:spring-cloud-starter-sleuth:$springBootVersion"
+    compile "org.springframework.cloud:spring-cloud-sleuth-zipkin:$springBootVersion"
     compile "org.springframework.security:spring-security-jwt:1.0.10.RELEASE"
 }

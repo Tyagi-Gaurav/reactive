@@ -10,6 +10,9 @@
     - [ ] Write a single end to end test to verify that everything is working
      - [ ] Booking call returns relevant details
      - [ ] Config service has config for all services
+    - [ ] Add Request ID to MDC and make it available in logs.
+    - [ ] Add span ID for services
+    - [ ] Add Application name, requestID and spanID available to logs.
     - [ ] Update infrastructure diagram with nodes of Service Gateway
     - [ ] Deploy the service discovery service using docker-compose local dev environment (Manual).
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose local dev environment (Manual).
@@ -21,6 +24,8 @@
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)
     - [ ] Send to kafka to be wrapped in Hystrix
+    - [ ] SSL communication between internal and external services
+    - [ ] Certificate auth between services and Kafka
     - [x] Change config service to use github for config
     - [x] Services Gateway chapter
     - [x] Zuul not accessing config service
