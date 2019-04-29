@@ -1,14 +1,13 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Create local config server with file backends.
-    - [ ] Deploy the config service using docker-compose local dev environment (Manual).
-    - [ ] Update base image of Java to Java 11
+    - [ ] Deploy eureka into container
+    - [ ] Access config service from eureka.
+    - [ ] Deploy routing Service into container
+    - [ ] Access config service from routing service container
     - [ ] Create vault for storing credentials and secrets
     - [ ] Run vault as docker container
     - [ ] Encrypt github configuration on config server using vault
     - [ ] Update Readme with system design, goals, requirements etc.
-    - [ ] Access config of services from config service when it runs inside docker container
-    - [ ] Deploy eureka into container. Access config service from eureka.
     - [ ] Specify host of config service in eureka as environment variable.
     - [ ] When a jar is built on Travis, the classifier should be current tag.
     - [ ] Exclude test in buildImageDependencies
@@ -33,6 +32,10 @@
     - [ ] Send to kafka to be wrapped in Hystrix
     - [ ] SSL communication between internal and external services
     - [ ] Certificate auth between services and Kafka
+    - [x] Access config of services from config service when it runs inside docker container
+    - [x] Create local config server with file backends.
+    - [x] Deploy the config service using docker-compose local dev environment (Manual).
+    - [x] Update base image of Java to Java 11
     - [x] When a jar is built locally, the classifier on it should be DEV
     - [x] Change config service to use github for config
     - [x] Services Gateway chapter

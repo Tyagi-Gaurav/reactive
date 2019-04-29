@@ -11,8 +11,8 @@ services:
 #    build: routing-service
 #    ports:
 #      - "8082:8082"
-#  service-discovery:
-#    image: local.service-discovery
-#    build: service-discovery
-#    ports:
-#      - "8761:8761"
+  service-discovery:
+    image: local.service-discovery
+    build: service-discovery
+    ports:
+      - "8761:8761"

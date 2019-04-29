@@ -23,4 +23,5 @@ dependencies {
         exclude group : "javax.servlet", module: "servlet-api"
         exclude group : "com.google.code.gson", module: "gson"
     }
+    compile group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.2'
 }

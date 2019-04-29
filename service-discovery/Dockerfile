@@ -1,5 +1,5 @@
-FROM java8:0.1
+FROM openjdk:11.0.3-jdk-stretch
 
-ADD build/libs/service-discovery-service-0.1.0-SNAPSHOT.jar .
+ADD build/libs/service-discovery-service-DEV.jar .
 
-CMD ["java", "-jar", "service-discovery-service-0.1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "service-discovery-service-DEV.jar"]
