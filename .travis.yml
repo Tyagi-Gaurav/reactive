@@ -1,0 +1,32 @@
+language: java
+jdk:
+- oraclejdk8
+sudo: required
+services:
+- docker
+notifications:
+  email:
+  - aanconsultancyservicesltd@gmail.com
+  on_success: always
+  on_failure: always
+branches:
+  only:
+  - master
+before_install:
+- gem install travis -v 1.8.5 --no-rdoc --no-ri
+- export BUILD_NAME=$TRAVIS_BUILD_NUMBER-$(date -u "+%Y%m%d%H%M%S")
+- export BUILD_BRANCH=$TRAVIS_BRANCH
+script:
+#- sh infrastructure/scripts/build.sh #Compile, Unit Test & Integration Test
+#- sh infrastructure/scripts/tag_build.sh
+#- sh infrastructure/scripts/create_image.sh
+#- sh infrastructure/scripts/deploy_to_docker_hub.sh
+#- sh infrastructure/scripts/run_e2e_tests.sh
+env:
+  global:
+  - secure: S4pQlQH/7+QTDg0NERuULlX/eeEqUU/hxu90lrqD7RNKoczMTOkRrvThq18U+3qEw6wcIJnLJxp42vsPeiUHBfWUjGc9RXYGVOFedprO0Up4mgWAdnW6hwmkZ/kVjJ8y9cdj2XE6uWha16s8o70ff036+JdQFOnOa93wWGrjbV1jPb+hIoxDm6sL8vA38udshR3aki8/WmxR/mATRO3yB9VR5JvZSz1FT6M+f2UN3jMGZeT1IzwuzkF4fqedzbYgdDacn6ovD7ICrrh9lylTh1sabKwd/kE/GMJgWzogxEz9wMQSEMFUNq+WhBumuJrfmtJGDM6tUsM1m3aQMk8JuYC08eznUxCsshMXn5m74vaYEH9sLK7IycvHFc+i48hMNxCx+LOBrrRIb6t2avlh6tUfqk6sx+eeM7GEixmti+mFyxO1qvAB0xURyKsLtogLui9LhZqk/6hRfvLbn7q4pda0TdZ6dPsyEPERw36SeZoFI6+AnHDs8WiVw9sm3HnTK0R96PBRQOU9pNyq033O/Mp9c7t7QGIl4cVuq0Eek9zb/fGE8BdTW+s4qfuC2Z4vhyvjdv7dAum7cQoLhbqgTyXMzFiWuSyyye0KFLPJY4nJm+1ZNV2q3D+3VS1KFAQpn+tG8YTJuXfjRj9TZZycieLOQT6mnROBXb7Q5giFcdY=
+  - secure: FWnlxLTYrerejkqlTT4gwVLy38tHNHqRp57qyQ554YUk1HDEGxm9pq1xvK3AqArKJc3AhcszIAngr3UKuL0xdUjaez5t2/7KnUaBS+sm81mUhDP3MyvEWdQehYFHP0/EI5g2CwB3cl6EWnqWNLH91bE+cZ9du2hX+AhqXeWVk2nHsJgkRKcA6RzchK+5J5F8S7X3dYgSzsP6CpP92xeRm2TQ7b+WLp+cYIP+Spn5GijVoTr88D4gY22JgrtFs4XJ8mHaTkBBc0GQUBMVx+6FCTpZouk+2mZ+4MQgkEvwtAnY1+dBhNKHRWzqtbOC9TBLhyOdwQ/BNGAQZzz18K6dR5lv7jPYGiBJtEaNNd1lOdPaX65m9Xc0qXDqiHa0VAxaomMr/Vd1s1bTCSrVhKFISoC7qFf8vH8dieRuydTYjTOLDuXnEdf2+tFhpU7/drKJZfDCRcrDWQtRXpF/JIbqj5SttclBKwAhBB1bOkegfEhRkn4ZN3tQwDanDJXHFt0M48cS2bKvJJCtA78249A/ry0li7AJL/wcQrB7+WD+ABOSlzEdSvCi2EQK9A4Iq007wNGbMwGbcYTSKBDwoMNLhf4H9TmlbdnSukGFwOJZqwGOw6q5nlgNE7T0quyQ5+er3R94WnQalU8bcFF9SoSDv9fingZSbfJGH4BCgilPNt4=
+
+# DOCKER_USERNAME
+# DOCKER_PASSWORD
+##

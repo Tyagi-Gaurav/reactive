@@ -18,11 +18,9 @@ allprojects {
         excludeFilter = file("$rootDir/gradle/config/findbugs/exclude.xml")
     }
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 1.11
+    targetCompatibility = 1.11
     group 'gt.reactive'
-
-    // group = "gt.reactive.${githubProjectName}"
 
     tasks.withType(FindBugs) {
         reports {
@@ -31,7 +29,7 @@ allprojects {
         }
     }
 
-    project.version = scmVersion.version
+    project.version = System.getenv("BUILD_NAME") ? scmVersion.version : "DEV"
 
     project.ext {
         springBootVersion = '2.1.0.RELEASE'

@@ -1,9 +1,12 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
+    - [ ] Encrypt github configuration on config-service
     - [ ] Deploy the config service using docker-compose local dev environment (Manual).
+    - [ ] Update Readme with system design, goals, requirements etc.
     - [ ] Access config of services from config service when it runs inside docker container
     - [ ] Deploy eureka into container. Access config service from eureka.
     - [ ] Specify host of config service in eureka as environment variable.
+    - [ ] When a jar is built on Travis, the classifier should be current tag.
     - [ ] Exclude test in buildImageDependencies
     - [ ] Move common code out into libraries. Eg. Hystrix, Filters.
     - [ ] Write a gradle task that starts up the application locally for test
@@ -26,6 +29,7 @@
     - [ ] Send to kafka to be wrapped in Hystrix
     - [ ] SSL communication between internal and external services
     - [ ] Certificate auth between services and Kafka
+    - [x] When a jar is built locally, the classifier on it should be DEV
     - [x] Change config service to use github for config
     - [x] Services Gateway chapter
     - [x] Zuul not accessing config service
@@ -40,6 +44,7 @@
     - [x] Versioning each project
     - [x] Create a semi functional Cargo service that accepts a request and
         returns a dummy response. Send kafka event
+- [ ] Using Vault to access credentials/secrets
 - [ ] Security service to become authentication service
 - [ ] Authentication service to valid credentials with a database (For Basic Auth)
 - [ ] How should the token refresh happen?
@@ -89,54 +94,10 @@
             - [ ] Events that show cargo running on time.
             - [ ] Delay for leg journeys
 
-###Functional Requirements
-
-* M1: Online Operations
-    - [ ] R16: Each booking must be a secured booking so when a customer logs-in, they must be issued a token (Use JWT?)
-    - [ ] R1: Book a Cargo
-        - [ ] SR1.1: Failed payments for customers with pricing policy should be put in a retry queue.
-    - [ ] R2: Cancel a cargo.
-    - [ ] R3: What is the current status of my cargo?
-    - [ ] R4: Which carriers were used for the cargo?
-    - [ ] R5: Which cargo’s were being sent between 2 locations.
-    - [ ] R7: Change destination of a booked cargo.
-    - [ ] R10: Changing a clients pricing policy.
-    - [ ] R11: For a given cargo, retrieve the detailed itinerary for it which highlights the different legs of the journey and for each leg, which carrier would be serving that.
-    - [ ] R12: Send invoices to customers automatically when payment is made
-    - [ ] R13: Register Customer via email
-    - [ ] R14: Register Customer via Google Auth
-    - [ ] R15: Register Customer via Facebook Auth
-* Admin Operations
-    - [ ] R6: Which cargo took longest to reach its destination?
-    - [ ] R8: What was the total sale from booking cargo’s for a given time frame?
-    - [ ] R9: Which clients have booked the most number of cargos?
-* S5: Async Operations
-    - [ ] R1: Taking payment for cargo’s using queuing.
-    - [ ] R2: Receiving key events for a cargo from different carriers about their leg journeys, loading/unloading and delivery etc.
-    - [ ] R3: Calculating quotes from various providers to get the best routes. (Routing Service)
-* S6: Non-Functional requirements
-    * R3: TPS for each endpoint.
-        * Booking: 100 TPS
-        * Cancellation: 10 TPS
-        * Status: 300 TPS
-    * R1: System Metrics (To be published using some tool)
-        - [ ] SR1: CPU Usage
-        - [ ] SR2: Memory Usage
-        - [ ] SR3: Thread Pool Usage
-        - [ ] SR4: Circuit breaker metrics
-        - [ ] SR5: Open File Handles
-        - [ ] SR6: Disk Usage
-        - [ ] SR7: JVM Stats
-            - [ ] SR8: GC Pauses
-            - [ ] SR9: Heap Usa
-    * R2: Business Analytics (Using Kafka for last 30 days -- See kafka streams aggregation/hopping window)
-        - [ ] R1: Most booked destinations.
-        - [ ] R2: Daily/Monthly booked cargo.
-        - [ ] R3: Number of Failed payments.
-        - [ ] R4: Number of bookings
-        - [ ] R5: Number of cancellations
-* S7: Throttling
-    - [ ] R1: Throttle get status call based on pricing policy of the customer.
+### Backlog
+#### Tech Tasks (Gradle)
+- [ ] Gradle all versions to be maintained in a single place
+- [ ] Any warnings should fail the build
 
 ### Done
 - [x] Failure of findBugs should fail the task

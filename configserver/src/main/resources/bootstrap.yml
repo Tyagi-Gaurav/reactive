@@ -12,10 +12,10 @@ spring:
               file:///Users/gauravt/workspace/reactive-config/config/local/cargo-service,
               file:///Users/gauravt/workspace/reactive-config/config/local/routing-service,
               file:///Users/gauravt/workspace/reactive-config/config/local/service-gateway
-#          git:
-#            uri: https://github.com/chonku/reactive-config
-#            username: ${CONFIG_SERVER_USER_NAME:-github}
-#            password: ${CONFIG_SERVER_PASSWORD:-password}
+          git:
+            uri: https://github.com/chonku/reactive-config
+            username: ${CONFIG_SERVER_USER_NAME:-github}
+            password: ${CONFIG_SERVER_PASSWORD:-password}
 
 logging:
   level:
