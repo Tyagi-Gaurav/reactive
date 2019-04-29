@@ -1,7 +1,11 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Encrypt github configuration on config-service
+    - [ ] Create local config server with file backends.
     - [ ] Deploy the config service using docker-compose local dev environment (Manual).
+    - [ ] Update base image of Java to Java 11
+    - [ ] Create vault for storing credentials and secrets
+    - [ ] Run vault as docker container
+    - [ ] Encrypt github configuration on config server using vault
     - [ ] Update Readme with system design, goals, requirements etc.
     - [ ] Access config of services from config service when it runs inside docker container
     - [ ] Deploy eureka into container. Access config service from eureka.
