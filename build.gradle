@@ -18,8 +18,8 @@ allprojects {
         excludeFilter = file("$rootDir/gradle/config/findbugs/exclude.xml")
     }
 
-    sourceCompatibility = 1.11
-    targetCompatibility = 1.11
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
     group 'gt.reactive'
 
     tasks.withType(FindBugs) {

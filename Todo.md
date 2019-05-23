@@ -1,9 +1,11 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Deploy eureka into container
-    - [ ] Access config service from eureka.
+    - [x] Deploy eureka into container
     - [ ] Deploy routing Service into container
     - [ ] Access config service from routing service container
+    - [ ] Move common gradle code for modules into super gradle
+    - [ ] Use environment variables in application.yaml
+    - [ ] Add environment variables for docker
     - [ ] Create vault for storing credentials and secrets
     - [ ] Run vault as docker container
     - [ ] Encrypt github configuration on config server using vault
