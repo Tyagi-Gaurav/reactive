@@ -1,6 +1,8 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [x] Deploy eureka into container
+    - [ ] Fix lombok in build.gradle 
+    - [ ] Application build is failing
+    - [ ] Draw intended infrastructure on paper.  
     - [ ] Deploy routing Service into container
     - [ ] Access config service from routing service container
     - [ ] Move common gradle code for modules into super gradle
@@ -34,6 +36,7 @@
     - [ ] Send to kafka to be wrapped in Hystrix
     - [ ] SSL communication between internal and external services
     - [ ] Certificate auth between services and Kafka
+    - [x] Deploy eureka into container
     - [x] Access config of services from config service when it runs inside docker container
     - [x] Create local config server with file backends.
     - [x] Deploy the config service using docker-compose local dev environment (Manual).

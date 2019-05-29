@@ -2,9 +2,16 @@
 
 [Customer Service](./Customer-Service/Readme.md)
 
+## How To?
+* Build Jar: `./gradlew`
+
 ## Handy endpoints
 * Checking Routes on Zuul: `/routes`
 * Eureka Service Discovery: `http://localhost:8761`
+
+## Docker endpoints for services
+Config Service: `curl -i -vvv http://localhost:8888/cargo-service/native/local`
+Service Gateway (Eureka): `http://localhost:8761` 
 
 ## Design
 ### Goals & Requirements

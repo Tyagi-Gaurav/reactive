@@ -1,4 +1,4 @@
-FROM openjdk:11.0.3-jdk-stretch
+FROM openjdk:8u212-jdk-stretch
 
 ADD build/libs/service-discovery-service-DEV.jar .
 

@@ -1,10 +1,3 @@
-#zuul:
-#  ignored-services: "*"
-#  prefix: /v1/shipping
-#  routes:
-#    routing-service: /routing/**
-#    cargo-service: /cargo/**
-
 eureka:
   instance:
     preferIpAddress: true

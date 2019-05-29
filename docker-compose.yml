@@ -6,11 +6,11 @@ services:
     build: configserver
     ports:
       - "8888:8888"
-#  routing-service:
-#    image: local.routing-service
-#    build: routing-service
-#    ports:
-#      - "8082:8082"
+  routing-service:
+    image: local.routing-service
+    build: routing-service
+    ports:
+      - "8082:8082"
   service-discovery:
     image: local.service-discovery
     build: service-discovery

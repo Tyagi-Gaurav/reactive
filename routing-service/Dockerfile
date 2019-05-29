@@ -1,5 +1,6 @@
-FROM java8:0.1
+FROM openjdk:8u212-jdk-stretch
+ENV MALLOC_ARENA_MAX=2
 
-ADD build/libs/routing-service-0.1.0-SNAPSHOT.jar .
+ADD build/libs/routing-service-DEV.jar /data/routing-service.jar
 
-CMD ["java", "-jar", "routing-service-0.1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/data/routing-service.jar"]
