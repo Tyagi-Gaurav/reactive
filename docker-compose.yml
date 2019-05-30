@@ -29,6 +29,7 @@ services:
     links:
       - "configserver:local.config-server"
       - "service-discovery:local.service-discovery"
+      - "kafka:local.kafka"
     depends_on:
       - configserver
       - service-discovery
@@ -40,6 +41,24 @@ services:
     build: service-discovery
     ports:
       - "8761:8761"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka:latest
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    links:
+      - "zookeeper:local.zookeeper"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: local.kafka
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: local.zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   default:

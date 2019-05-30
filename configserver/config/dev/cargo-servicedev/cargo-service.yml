@@ -1,4 +1,4 @@
-kafka.host: localhost:9092
+kafka.host: local.kafka:9092
 server.port: 8081
 eureka:
   instance:
