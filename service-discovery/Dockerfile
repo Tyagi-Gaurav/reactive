@@ -1,5 +1,6 @@
 FROM openjdk:8u212-jdk-stretch
 
-ADD build/libs/service-discovery-service-DEV.jar .
+ADD build/libs/service-discovery-service-DEV.jar /data/service-discovery.jar
+COPY ./startup.sh /data/startup.sh
 
-CMD ["java", "-jar", "service-discovery-service-DEV.jar"]
+CMD ["/bin/bash", "/data/startup.sh"]

@@ -1,7 +1,9 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Fix lombok in build.gradle 
-    - [ ] Application build is failing
+    - [ ] 
+    - [ ] Create dev and local profile in all projects
+    - [ ] Access docker config for routing service from outside
+    - [ ] Update host names for docker config for routing service
     - [ ] Draw intended infrastructure on paper.  
     - [ ] Deploy routing Service into container
     - [ ] Access config service from routing service container
@@ -36,25 +38,6 @@
     - [ ] Send to kafka to be wrapped in Hystrix
     - [ ] SSL communication between internal and external services
     - [ ] Certificate auth between services and Kafka
-    - [x] Deploy eureka into container
-    - [x] Access config of services from config service when it runs inside docker container
-    - [x] Create local config server with file backends.
-    - [x] Deploy the config service using docker-compose local dev environment (Manual).
-    - [x] Update base image of Java to Java 11
-    - [x] When a jar is built locally, the classifier on it should be DEV
-    - [x] Change config service to use github for config
-    - [x] Services Gateway chapter
-    - [x] Zuul not accessing config service
-    - [x] Hystrix chapter and use hystrix for invoking downstreams from cargo service
-    - [x] Create separate infrastructure project to run docker commands
-    - [x] Invoke routing service using service discovery from cargo service.
-    - [x] Create service discovery project using Spring cloud and Netflix Eureka
-    - [x] Create a dummy routing service with a dummy method call
-    - [x] Create a config server that can be used to retrieve
-            config from a configuration repo. For now, use local
-            file based repository.
-    - [x] Versioning each project
-    - [x] Create a semi functional Cargo service that accepts a request and
         returns a dummy response. Send kafka event
 - [ ] Using Vault to access credentials/secrets
 - [ ] Security service to become authentication service

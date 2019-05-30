@@ -1,13 +1,25 @@
 spring:
   application:
     name: routing-service
-  profiles:
-    active: native
   cloud:
     config:
-      label: local
       uri: http://localhost:8888
+
 
 logging:
   level:
     root: INFO
+
+---
+spring:
+  profiles: dev
+  cloud:
+    enabled: true
+    config:
+      uri: http://local.config-server:8888
+      profile: native
+      label: dev
+      max-attempts: 5
+      retry:
+        initial-interval: 3000
+        multiplier: 2

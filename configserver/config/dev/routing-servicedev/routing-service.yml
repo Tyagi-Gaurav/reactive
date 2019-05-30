@@ -1,0 +1,24 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://service-discovery:8761/eureka/
+
+server.port: 8082
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8091/user
+    client:
+      client-id: routingservice
+
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1
