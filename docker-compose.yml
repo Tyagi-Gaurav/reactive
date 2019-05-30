@@ -23,6 +23,18 @@ services:
     ports:
       - "8082:8082"
     command: ["/bin/bash", "/data/startup.sh", "curl -i -vvv http://local.config-server:8888/actuator/health"]
+  cargo-service:
+    image: local.cargo-service
+    build: cargo-service
+    links:
+      - "configserver:local.config-server"
+      - "service-discovery:local.service-discovery"
+    depends_on:
+      - configserver
+      - service-discovery
+    ports:
+      - "8081:8081"
+    command: ["/bin/bash", "/data/startup.sh", "curl -i -vvv http://local.config-server:8888/actuator/health"]
   service-discovery:
     image: local.service-discovery
     build: service-discovery

@@ -1,12 +1,8 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] 
-    - [ ] Create dev and local profile in all projects
-    - [ ] Access docker config for routing service from outside
-    - [ ] Update host names for docker config for routing service
+    - [ ] Add kafka to docker-compose
+    - [ ] Add security service to docker compose
     - [ ] Draw intended infrastructure on paper.  
-    - [ ] Deploy routing Service into container
-    - [ ] Access config service from routing service container
     - [ ] Move common gradle code for modules into super gradle
     - [ ] Use environment variables in application.yaml
     - [ ] Add environment variables for docker
@@ -30,8 +26,6 @@
     - [ ] Deploy Kafka/Zookeeper stack using docker-compose local dev environment (Manual).
     - [ ] Deploy the routing service using docker-compose local dev environment (Manual).
     - [ ] Make routing service communicate with config service and service discovery (Manual).
-    - [ ] Make routing service communicate with config service and service discovery (Manual).
-    - [ ] Deploy the cargo service using docker-compose local dev environment (Manual).
     - [ ] Pipeline for project (build, test, tag, release, deploy to docker)
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Creating build info for each microservice (/actuator/info)

@@ -19,7 +19,3 @@ spring:
       uri: http://local.config-server:8888
       profile: native
       label: dev
-      max-attempts: 5
-      retry:
-        initial-interval: 3000
-        multiplier: 2
