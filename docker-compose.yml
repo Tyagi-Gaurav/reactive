@@ -41,6 +41,11 @@ services:
     build: service-discovery
     ports:
       - "8761:8761"
+  security-service:
+    image: local.security-service
+    build: security-service
+    ports:
+      - "8091:8091"
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
