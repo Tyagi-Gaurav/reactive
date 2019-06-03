@@ -1,10 +1,25 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Write a end to end smoke test to verify that everything is working
-    - [ ] SSL communication between internal and external services
-    - [ ] Certificate auth between services and Kafka
+    - [ ] Programmatically get a token to be used.
+    - [ ] Understand by running security service manually, how the security configuration 
+        works and document it.
+    - [ ] Write an end to end smoke test to verify that everything is working
     
 ### Backlog
+- [ ] Security
+    - [ ] Using asynchronous keys between security service and cargo
+    - [ ] Using asynchronous keys between security service and routing 
+    - [ ] Create a backend for security service. 
+    - [ ] SSL communication between internal and external services
+    - [ ] Certificate auth between services and Kafka
+    - [ ] OAuth2 for customer registration
+    - [ ] JWT for other services
+    - [ ] Using Vault to access credentials/secrets
+        - [ ] Create vault for storing credentials and secrets
+        - [ ] Run vault as docker container
+    - [ ] Encrypt github configuration on config server using vault
+    - [ ] Authentication service to valid credentials with a database (For Basic Auth)
+
 - [ ] Supporting Tasks
     - [ ] Draw intended infrastructure on paper.
     - [ ] Update Readme with system design, goals, requirements etc.
@@ -63,14 +78,7 @@
         - [ ] Receives events from kafka for different cargo booked (along with legs booked) and based on schedule, generates events for them.
             - [ ] Events that show cargo running on time.
             - [ ] Delay for leg journeys
-- [ ] Security
-    - [ ] OAuth2 for customer registration
-    - [ ] JWT for other services
-    - [ ] Using Vault to access credentials/secrets
-        - [ ] Create vault for storing credentials and secrets
-        - [ ] Run vault as docker container
-    - [ ] Encrypt github configuration on config server using vault
-    - [ ] Authentication service to valid credentials with a database (For Basic Auth)
+
 - [ ] Move common gradle code for modules into super gradle
     - [ ] Use environment variables in application.yaml
     - [ ] Add environment variables for docker

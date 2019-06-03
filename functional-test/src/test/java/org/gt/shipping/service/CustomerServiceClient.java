@@ -2,9 +2,7 @@ package org.gt.shipping.service;
 
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.client.RequestCallback;
 
 @Scope("cucumber-glue")
 @Controller
@@ -25,10 +23,4 @@ public class CustomerServiceClient {
         return String.format("http://%s:%d/shipping/customer/register", host, port);
     }
 
-    public RequestCallback registerRequest() {
-        return request -> {
-            request.getHeaders().add(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE);
-
-        };
-    }
 }

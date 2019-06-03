@@ -12,26 +12,24 @@ targetCompatibility = 1.8
 test.enabled = false
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile "io.cucumber:cucumber-java8:$cucumberVersion"
-    testCompile "io.cucumber:cucumber-junit:$cucumberVersion"
-    testCompile "io.cucumber:cucumber-core:$cucumberVersion"
-    testCompile "io.cucumber:cucumber-spring:$cucumberSpringVersion"
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
     compileOnly "org.immutables:value:2.7.4"
     testCompile "org.immutables:value:2.7.4:annotations"
     testCompile "org.immutables:builder:2.7.4"
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-    testCompile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
+        exclude group: "junit", module: "junit"
+    }
     testCompile "com.fasterxml.jackson.core:jackson-core:2.9.7"
-    testCompile (project(':customer-service').sourceSets.main.output)
+    testCompile "org.assertj:assertj-core:3.8.0"
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.2'
+    testCompile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.26'
+    testCompile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
+    testCompile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.26'
 }
 
-task functional() {
-    doLast {
-        workingDir "$rootDir/functional-test"
-        commandLine "java","-cp",
-                "build/classes/java/test",
-                "org.gt.shipping.CucumberParallelRunner"
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
     }
 }
