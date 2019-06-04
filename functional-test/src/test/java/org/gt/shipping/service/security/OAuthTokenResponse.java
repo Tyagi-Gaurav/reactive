@@ -10,7 +10,7 @@ import static org.gt.shipping.service.security.ImmutableOAuthTokenResponse.*;
 
 @Value.Immutable
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value.Style(builder = "new") 
+@Value.Style(builder = "new")
 @JsonSerialize
 @JsonDeserialize(builder = Builder.class)
 public interface OAuthTokenResponse {

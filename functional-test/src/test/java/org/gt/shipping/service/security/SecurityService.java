@@ -3,7 +3,6 @@ package org.gt.shipping.service.security;
 import org.gt.shipping.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -23,12 +22,7 @@ public class SecurityService implements BaseService {
     private String hostname = "localhost";
     private String protocol = "http";
     private int port = 8091;
-    private String oauthUrl = "/oauth/token";
-
-    @Override
-    public String getHealthCheckUrl() {
-        return "http://:8091/actuator/health";
-    }
+    private String oauthUrl = "oauth/token";
 
     public OAuthTokenResponse getOauthToken() {
         String url = String.format("%s://%s:%d/%s", protocol, hostname, port, oauthUrl);

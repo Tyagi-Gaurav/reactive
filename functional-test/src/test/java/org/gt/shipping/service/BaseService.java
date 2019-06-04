@@ -1,5 +1,7 @@
 package org.gt.shipping.service;
 
 public interface BaseService {
-    String getHealthCheckUrl();
+    default String getHealthCheckUrl() {
+        return "/actuator/health";
+    }
 }
