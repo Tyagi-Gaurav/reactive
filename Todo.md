@@ -1,9 +1,9 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Programmatically get a token to be used.
-    - [ ] Understand by running security service manually, how the security configuration 
-        works and document it.
-    - [ ] Write an end to end smoke test to verify that everything is working
+    - [ ] Add kafka message consumption to smoke test
+    - [ ] Externalize config in smoke test to property files.
+    - [ ] Update infrastructure design with current state.
+    - [ ] Add Nginx in front of the application
     
 ### Backlog
 - [ ] Security
@@ -21,7 +21,7 @@
     - [ ] Authentication service to valid credentials with a database (For Basic Auth)
 
 - [ ] Supporting Tasks
-    - [ ] Draw intended infrastructure on paper.
+    
     - [ ] Update Readme with system design, goals, requirements etc.
     - [ ] Specify host of config service in eureka as environment variable.
     - [ ] When a jar is built on Travis, the classifier should be current tag.
@@ -33,7 +33,6 @@
     - [ ] Add Request ID to MDC and make it available in logs.
     - [ ] Add span ID for services
     - [ ] Add Application name, requestID and spanID available to logs.
-    - [ ] Update infrastructure diagram with nodes of Service Gateway
     - [ ] Pipeline for project (build, test, tag, release, deploy to docker)
     - [ ] Create a semi functional audit service that reads the event and prints it.
     - [ ] Send to kafka to be wrapped in Hystrix
@@ -83,7 +82,6 @@
     - [ ] Use environment variables in application.yaml
     - [ ] Add environment variables for docker
 
-
 #### Tech Tasks (Gradle)
 - [ ] Gradle all versions to be maintained in a single place
 - [ ] Any warnings should fail the build
@@ -92,4 +90,10 @@
 * Use Clean code.
 * Nothing goes into production until it is functionally and non-functionally(selected endpoints) tested.
 * No manual changes.
+* Drive everything via automation
 * Monitoring to be done before pushing changes into production.
+
+### Done
+- [x] Programmatically get a token to be used.
+- [x] Understand by running security service manually, how the security configuration 
+        works and document it.
