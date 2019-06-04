@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.7"
+    }
+}
+
+apply plugin: "net.ltgt.apt"
+
 project.ext {
     cucumberVersion = '4.2.0'
     springBootVersion = '2.1.0.RELEASE'
@@ -13,7 +26,7 @@ test.enabled = false
 
 dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
-    compileOnly "org.immutables:value:2.7.4"
+    testCompile "org.immutables:value:2.7.4"
     testCompile "org.immutables:value:2.7.4:annotations"
     testCompile "org.immutables:builder:2.7.4"
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
