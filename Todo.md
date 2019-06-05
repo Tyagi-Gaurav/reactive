@@ -1,9 +1,10 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Add kafka message consumption to smoke test
+    - [ ] Normalize dependencies for all projects into dependencies.gradle
     - [ ] Externalize config in smoke test to property files.
     - [ ] Update infrastructure design with current state.
     - [ ] Add Nginx in front of the application
+    - [ ] Add healthcheck to all containers (like config service)
     
 ### Backlog
 - [ ] Security
@@ -97,3 +98,4 @@
 - [x] Programmatically get a token to be used.
 - [x] Understand by running security service manually, how the security configuration 
         works and document it.
+- [x] Add kafka message consumption to smoke test

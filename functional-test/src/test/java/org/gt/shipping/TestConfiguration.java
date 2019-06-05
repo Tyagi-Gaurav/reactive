@@ -1,6 +1,7 @@
 package org.gt.shipping;
 
 import org.gt.shipping.service.cargo.CargoService;
+import org.gt.shipping.service.kafka.KafkaClient;
 import org.gt.shipping.service.security.SecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,4 +19,7 @@ public class TestConfiguration {
 
     @Bean
     public Client client() { return ClientBuilder.newClient(); }
+
+    @Bean
+    public KafkaClient kafkaClient() { return new KafkaClient();}
 }

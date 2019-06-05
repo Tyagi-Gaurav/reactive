@@ -11,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Service
@@ -37,13 +39,16 @@ public class SecurityService implements BaseService {
                 .request()
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                 .header(HttpHeaders.ACCEPT, "*/*")
-                .header(HttpHeaders.AUTHORIZATION, String.format("Basic %s", base64Encode("routingservice", "thisissecret")))
+                .header(HttpHeaders.AUTHORIZATION, String.format("Basic %s",
+                        base64Encode("routingservice", "thisissecret")))
                 .post(Entity.form(formData));
 
         return response.readEntity(OAuthTokenResponse.class);
     }
 
     private String base64Encode(String username, String password) {
-        return new String(Base64.getEncoder().encode(String.format("%s:%s", username, password).getBytes()));
+        return new String(Base64.getEncoder()
+                .encode(String.format("%s:%s", username, password).getBytes(StandardCharsets.UTF_8)),
+                StandardCharsets.UTF_8);
     }
 }

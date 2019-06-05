@@ -5,7 +5,22 @@ buildscript {
         }
     }
     dependencies {
-        classpath "net.ltgt.gradle:gradle-apt-plugin:0.7"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.21"
+    }
+}
+
+dea {
+    project {
+        // experimental: whether annotation processing will be configured in the IDE; only actually used with the 'idea' task.
+        configureAnnotationProcessing = true
+    }
+    module {
+        apt {
+            // whether generated sources dirs are added as generated sources root
+            addGeneratedSourcesDirs = true
+            // whether the annotationProcessor/apt and testAnnotationProcessor/testApt dependencies are added as module dependencies
+            addAptDependencies = true
+        }
     }
 }
 
@@ -24,20 +39,22 @@ targetCompatibility = 1.8
 
 test.enabled = false
 
+apply from: '../gradle/dependencies.gradle'
+
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
-    testCompile "org.immutables:value:2.7.4"
-    testCompile "org.immutables:value:2.7.4:annotations"
-    testCompile "org.immutables:builder:2.7.4"
-    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
-        exclude group: "junit", module: "junit"
-    }
-    testCompile "com.fasterxml.jackson.core:jackson-core:2.9.7"
-    testCompile "org.assertj:assertj-core:3.8.0"
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.2'
-    testCompile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.26'
-    testCompile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
-    testCompile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.26'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testCompileOnly "org.immutables:value"
+    testAnnotationProcessor "org.immutables:value:$immutablesVersion"
+    testCompileOnly "org.immutables:value:$immutablesVersion:annotations"
+    testCompileOnly "org.immutables:builder"
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile "com.fasterxml.jackson.core:jackson-core"
+    testCompile "org.assertj:assertj-core"
+    testCompile "org.junit.jupiter:junit-jupiter-engine"
+    testCompile "org.glassfish.jersey.core:jersey-client"
+    testCompile "org.glassfish.jersey.media:jersey-media-json-jackson"
+    testCompile "org.glassfish.jersey.inject:jersey-hk2"
+    compile "org.apache.kafka:kafka-clients"
 }
 
 test {
