@@ -1,5 +1,6 @@
+apply plugin: 'io.spring.dependency-management'
 
-project.ext {
+ext {
     cucumberVersion = '4.2.0'
     springBootVersion = '2.1.0.RELEASE'
     cucumberSpringVersion='2.1.0'
@@ -10,30 +11,34 @@ project.ext {
     assertJVersion = '3.8.0'
     jerseyVersion = '2.26'
     lombokVersion = '1.18.4'
+    hystrixVersion = '1.5.18'
 }
 
+dependencyManagement {
+    dependencies {
+        dependency "org.junit.jupiter:junit-jupiter:$junitVersion"
 
-dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+        dependency "org.immutables:value:$immutablesVersion"
+        dependency "org.immutables:builder:$immutablesVersion"
+        dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
+            exclude 'junit:junit'
+        }
+        dependency "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+        dependency "org.assertj:assertj-core:$assertJVersion"
+        dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        dependency "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
+        dependency "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
+        dependency "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
+        dependency "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 
-    testCompile "org.immutables:value:$immutablesVersion"
-    testCompile "org.immutables:value:$immutablesVersion:annotations"
-    testCompile "org.immutables:builder:$immutablesVersion"
-    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
-        exclude group: "junit", module: "junit"
+        dependency "org.apache.kafka:kafka-clients:$kafkaVersion"
+        dependency "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+        dependency "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-context:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springBootVersion"
+        dependency "org.projectlombok:lombok:$lombokVersion"
+        dependency "com.netflix.hystrix:hystrix-javanica:$hystrixVersion"
+        dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion"
     }
-    testCompile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-    testCompile "org.assertj:assertj-core:$assertJVersion"
-    testCompile "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-    testCompile "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
-    testCompile "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
-    testCompile "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-
-    compile "org.apache.kafka:kafka-clients:$kafkaVersion"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-context:$springBootVersion"
-    compile "org.projectlombok:lombok:$lombokVersion"
 }
