@@ -3,7 +3,6 @@
     - [ ] Normalize dependencies for all projects into dependencies.gradle
     - [ ] Externalize config in smoke test to property files.
     - [ ] Update infrastructure design with current state.
-    - [ ] Add Nginx in front of the application
     - [ ] Add healthcheck to all containers (like config service)
     
 ### Backlog
@@ -20,6 +19,9 @@
         - [ ] Run vault as docker container
     - [ ] Encrypt github configuration on config server using vault
     - [ ] Authentication service to valid credentials with a database (For Basic Auth)
+
+- [ ] Cargo
+    - [ ] Book a cargo 
 
 - [ ] Supporting Tasks
     
@@ -56,11 +58,10 @@
 - [ ] Metrics
 - [ ] Alerting
 - [ ] Micro Service(s):
-    - [ ] Routing Service: The Routing service chooses an itinerary with a minimum total magnitude of the Legs based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
+    - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the Legs based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
     - [ ] Customer
-    - [ ] Cargo
     - [ ] Audit
-    - [ ] Carrier: Each of the below carriers available as separate microservices which provide different legs, duration of legs etc. and prices based on a given DeliverySpec (Can this be simplified to
+    - [ ] Carrier: Each of the below carriers available as separate micro services which provide different legs, duration of legs etc. and prices based on a given DeliverySpec (Can this be simplified to
         - [ ] CarrierA:
         - [ ] CarrierB:
         - [ ] CarrierC:

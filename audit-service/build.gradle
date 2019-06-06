@@ -11,13 +11,15 @@ springBoot {
     mainClassName = "org.gt.shipping.audit.AuditServiceApplication"
 }
 
+apply from: '../gradle/dependencies.gradle'
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-    testCompile "org.assertj:assertj-core:3.8.0"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-context:$springBootVersion"
+    testCompile "org.junit.jupiter:junit-jupiter-engine"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "org.assertj:assertj-core"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.cloud:spring-cloud-config-client"
+    compile "org.springframework.cloud:spring-cloud-context"
     compile "org.projectlombok:lombok:1.18.4"
 }
