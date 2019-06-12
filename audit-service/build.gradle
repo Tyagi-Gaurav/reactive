@@ -11,8 +11,6 @@ springBoot {
     mainClassName = "org.gt.shipping.audit.AuditServiceApplication"
 }
 
-apply from: '../gradle/dependencies.gradle'
-
 dependencies {
     testCompile "org.junit.jupiter:junit-jupiter-engine"
     testCompile "org.springframework.boot:spring-boot-starter-test"

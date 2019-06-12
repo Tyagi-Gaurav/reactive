@@ -1,6 +1,20 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Normalize dependencies for all projects into dependencies.gradle
+    - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the legs 
+          based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
+          API to accept start and end location with strategy and return list of options for user from different carriers.
+          - [x] What is the strategy? Check DDD book.
+          - [x] What data should be modeled to store leg information?
+          - [x] What database to use to store this information?  
+          - [ ] Can we get test data for leg information?
+          - [ ] Configure a mock carrier.
+    - [ ] Mongo Docker Setup
+    - [ ] Given start and end locations, make routing service return options from a single carrier
+    - [ ] Given start and end locations, make routing service return options from multiple carrier
+    - [ ] MongoDB basic tutorial
+    - [ ] Link Mongo Docker with routing
+    - [ ] Actuator video on infoq
     - [ ] Externalize config in smoke test to property files.
     - [ ] Update infrastructure design with current state.
     - [ ] Add healthcheck to all containers (like config service)
@@ -58,7 +72,6 @@
 - [ ] Metrics
 - [ ] Alerting
 - [ ] Micro Service(s):
-    - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the Legs based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
     - [ ] Customer
     - [ ] Audit
     - [ ] Carrier: Each of the below carriers available as separate micro services which provide different legs, duration of legs etc. and prices based on a given DeliverySpec (Can this be simplified to

@@ -40,5 +40,6 @@ dependencyManagement {
         dependency "org.projectlombok:lombok:$lombokVersion"
         dependency "com.netflix.hystrix:hystrix-javanica:$hystrixVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springBootVersion"
     }
 }
