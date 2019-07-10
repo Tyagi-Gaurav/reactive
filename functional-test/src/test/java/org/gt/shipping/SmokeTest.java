@@ -1,10 +1,10 @@
 package org.gt.shipping;
 
-import org.gt.shipping.service.cargo.BookingResponse;
-import org.gt.shipping.service.cargo.CargoService;
+import org.gt.shipping.service.cargo.TestBookingResponse;
+import org.gt.shipping.service.cargo.TestCargoService;
 import org.gt.shipping.service.kafka.KafkaClient;
 import org.gt.shipping.service.security.OAuthTokenResponse;
-import org.gt.shipping.service.security.SecurityService;
+import org.gt.shipping.service.security.TestSecurityService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,10 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SmokeTest {
 
     @Autowired
-    private SecurityService securityService;
+    private TestSecurityService securityService;
 
     @Autowired
-    private CargoService cargoService;
+    private TestCargoService cargoService;
 
     @Autowired
     private KafkaClient kafkaClient;
@@ -38,7 +38,7 @@ public class SmokeTest {
         assertThat(oauthToken.accessToken()).isNotNull();
 
         //Book Cargo
-        BookingResponse bookingResponse = cargoService.book(oauthToken.accessToken());
+        TestBookingResponse bookingResponse = cargoService.book(oauthToken.accessToken());
         assertThat(bookingResponse.bookingId()).isNotNull();
 
         //Check Routing Id

@@ -12,6 +12,7 @@ ext {
     jerseyVersion = '2.26'
     lombokVersion = '1.18.4'
     hystrixVersion = '1.5.18'
+    mongoVersion = '3.10.2'
 }
 
 dependencyManagement {
@@ -41,5 +42,6 @@ dependencyManagement {
         dependency "com.netflix.hystrix:hystrix-javanica:$hystrixVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springBootVersion"
+        dependency "org.mongodb:mongo-java-driver:$mongoVersion"
     }
 }

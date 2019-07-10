@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Service
-public class SecurityService implements BaseService {
+public class TestSecurityService implements BaseService {
 
     @Autowired
     Client client;

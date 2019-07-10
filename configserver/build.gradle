@@ -19,7 +19,6 @@ springBoot {
 }
 
 dependencies {
-    testCompile "junit:junit:4.12"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile "org.assertj:assertj-core:3.8.0"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"

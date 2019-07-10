@@ -1,4 +1,4 @@
-package org.gt.shipping.resource;
+package org.gt.shipping.routing.resource;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,17 +13,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {CustomerResource.class})
+@SpringBootTest(classes = RoutingResource.class)
 @AutoConfigureMockMvc
-public class CustomerResourceIntegrationTest {
+public class RoutingResourceTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void exampleTest() throws Exception {
+        //Given
+
         //When
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/shipping/customer/test"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/shipping/routing?startLoc="))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello World"));
     }

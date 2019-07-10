@@ -10,16 +10,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
-public class CargoService implements BaseService {
+public class TestCargoService implements BaseService {
     @Autowired
     Client client;
 
     private String hostname = "localhost";
     private String protocol = "http";
     private int port = 8081;
-    private String bookingUrl = "v1/shipping/cargo/book";
+    private String bookingUrl = "v1/shipping/cargo/getRoutes";
 
-    public BookingResponse book(String oauthToken) {
+    public TestBookingResponse book(String oauthToken) {
         String url = String.format("%s://%s:%d/%s", protocol, hostname, port, bookingUrl);
 
         Response response = client.target(URI.create(url).normalize())
@@ -28,7 +28,7 @@ public class CargoService implements BaseService {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .post(Entity.text(""));
 
-        return response.readEntity(BookingResponse.class);
+        return response.readEntity(TestBookingResponse.class);
     }
 
 }

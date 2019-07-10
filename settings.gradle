@@ -11,4 +11,5 @@ include 'service-discovery'
 include 'service-gateway'
 include 'security-service'
 include 'zipkin-server'
+include 'carrier-simulator'
 

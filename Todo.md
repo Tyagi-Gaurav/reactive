@@ -1,20 +1,32 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
-    - [ ] Normalize dependencies for all projects into dependencies.gradle
+    - [ ] Carrier Simulation
+        - [ ] Create Akka actor to read from leg database for a given carrier
+        - [ ] Setup mongoDb as database for Carrier module
+        - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
+        - [x] Create ETL for routes data and ingest into Mongo 
+        - [x] Create Carrier Simulation Module
+        - [X] Create leg information in database
+    
     - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the legs 
           based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
           API to accept start and end location with strategy and return list of options for user from different carriers.
+          - [ ] Given start and end locations, make routing service return options from a single carrier
+          - [ ] Can we get test data for leg information?
+          - [ ] Configure a mock carrier.
+          - [ ] Link Mongo Docker with routing
+          - [ ] Given start and end locations, make routing service return options from multiple carrier
+          - [ ] Change location to be of a domain object type.
+          - [ ] Add carrier mocks  
           - [x] What is the strategy? Check DDD book.
           - [x] What data should be modeled to store leg information?
           - [x] What database to use to store this information?  
-          - [ ] Can we get test data for leg information?
-          - [ ] Configure a mock carrier.
-    - [ ] Mongo Docker Setup
-    - [ ] Given start and end locations, make routing service return options from a single carrier
-    - [ ] Given start and end locations, make routing service return options from multiple carrier
+          - [x] Mongo Docker Setup
+    
     - [ ] MongoDB basic tutorial
-    - [ ] Link Mongo Docker with routing
     - [ ] Actuator video on infoq
+    
+    - [ ] Normalize dependencies for all projects into dependencies.gradle
     - [ ] Externalize config in smoke test to property files.
     - [ ] Update infrastructure design with current state.
     - [ ] Add healthcheck to all containers (like config service)

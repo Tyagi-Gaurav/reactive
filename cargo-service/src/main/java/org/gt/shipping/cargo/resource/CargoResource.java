@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.gt.shipping.KafkaClient;
 import org.gt.shipping.MessageMetaData;
 import org.gt.shipping.cargo.filter.UserContextHolder;
-import org.gt.shipping.cargo.routing.RoutingService;
+import org.gt.shipping.cargo.routing.RoutingServiceAdaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CargoResource {
 
     @Autowired
-    private RoutingService routingService;
+    private RoutingServiceAdaptor routingService;
 
     @Autowired
     private KafkaClient kafkaClient;

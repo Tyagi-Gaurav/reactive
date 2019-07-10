@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Random;
 
 @Service
-public class RoutingService {
-    private Logger logger = LoggerFactory.getLogger(RoutingService.class);
+public class RoutingServiceAdaptor {
+    private Logger logger = LoggerFactory.getLogger(RoutingServiceAdaptor.class);
 
     @Autowired
     private RestTemplate restTemplate;

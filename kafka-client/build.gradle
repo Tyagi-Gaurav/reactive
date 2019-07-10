@@ -3,5 +3,4 @@ ext.kafkaVersion='2.1.0'
 
 dependencies {
     compile group: 'org.apache.kafka', name: 'kafka-clients', version: "$kafkaVersion"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
