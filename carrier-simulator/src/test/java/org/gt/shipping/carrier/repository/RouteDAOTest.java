@@ -1,11 +1,12 @@
 package org.gt.shipping.carrier.repository;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -18,7 +19,7 @@ public class RouteDAOTest {
     private RouteDAO routeDAO;
 
     @MockBean
-    private MongoClient mongoClient;
+    private MongoTemplate mongoTemplate;
 
     @Test
     public void shouldHaveAppropriateAnnotations() throws Exception {
@@ -28,7 +29,8 @@ public class RouteDAOTest {
 
     @Test
     public void shouldRetrieveDataFromDatabase() throws Exception {
-        //Given
+        MongoDatabase test = mongoTemplate.getDb();
+        //test.getCollection("testCollection").insertMany();
 
         //When
         routeDAO.getData();

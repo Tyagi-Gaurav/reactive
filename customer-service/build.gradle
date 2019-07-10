@@ -6,10 +6,6 @@ project.ext {
     springBootVersion = '2.1.0.RELEASE'
 }
 
-bootJar {
-    baseName = 'customer-service'
-}
-
 project.version = scmVersion.version
 
 springBoot {
@@ -17,9 +13,9 @@ springBoot {
 }
 
 dependencies {
-    testCompile "org.junit.jupiter:junit-jupiter"
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-    testCompile "org.assertj:assertj-core:3.8.0"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.assertj:assertj-core:3.8.0"
+    api "org.springframework.boot:spring-boot-starter-web"
+    api "org.springframework.boot:spring-boot-starter-actuator"
 }

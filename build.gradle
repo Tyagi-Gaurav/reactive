@@ -16,6 +16,7 @@ allprojects {
     apply plugin: "java"
     apply plugin: "idea"
     apply plugin: "findbugs"
+    apply plugin: "java-library"
 
     findbugs {
         toolVersion = "3.0.1"
@@ -65,6 +66,10 @@ allprojects {
             // ignore, in case an older version of net.ltgt.apt is being used
             // that doesn't come with net.ltgt.apt-idea.
         }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
 

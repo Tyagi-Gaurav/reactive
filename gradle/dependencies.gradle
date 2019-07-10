@@ -4,7 +4,8 @@ ext {
     cucumberVersion = '4.2.0'
     springBootVersion = '2.1.0.RELEASE'
     cucumberSpringVersion='2.1.0'
-    junitVersion = '5.4.2'
+    junitVersion = '5.4.0'
+    junitPlatformVersion = '1.4.0'
     kafkaVersion = '2.1.0'
     immutablesVersion = '2.7.4'
     jacksonVersion = '2.9.7'
@@ -13,12 +14,14 @@ ext {
     lombokVersion = '1.18.4'
     hystrixVersion = '1.5.18'
     mongoVersion = '3.10.2'
+    embedMongoVersion = '2.2.0'
 }
 
 dependencyManagement {
     dependencies {
-        dependency "org.junit.jupiter:junit-jupiter:$junitVersion"
-
+        dependency "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        dependency "org.junit.platform:junit-platform-commons:$junitPlatformVersion"
         dependency "org.immutables:value:$immutablesVersion"
         dependency "org.immutables:builder:$immutablesVersion"
         dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
@@ -35,13 +38,21 @@ dependencyManagement {
         dependency "org.apache.kafka:kafka-clients:$kafkaVersion"
         dependency "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
         dependency "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-security:$springBootVersion"
         dependency "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
         dependency "org.springframework.cloud:spring-cloud-context:$springBootVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-starter-sleuth:$springBootVersion"
+        dependency "org.springframework.cloud:spring-cloud-sleuth-zipkin:$springBootVersion"
+        dependency "org.springframework.security.oauth:spring-security-oauth2:$springBootVersion"
+        dependency "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springBootVersion"
         dependency "org.projectlombok:lombok:$lombokVersion"
         dependency "com.netflix.hystrix:hystrix-javanica:$hystrixVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion"
         dependency "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springBootVersion"
         dependency "org.mongodb:mongo-java-driver:$mongoVersion"
+        dependency "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
+        dependency "org.springframework.data:spring-data-mongodb:$springBootVersion"
+        dependency "de.flapdoodle.embed:de.flapdoodle.embed.mongo:$embedMongoVersion"
     }
 }

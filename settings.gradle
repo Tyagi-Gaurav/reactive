@@ -1,15 +1,15 @@
 rootProject.name = 'cargo'
 include 'functional-test',
-        'customer-service'
-include 'cargo-service'
-include 'kafka-client'
-include 'audit-service'
-include 'configserver'
-include 'infrastructure'
-include 'routing-service'
-include 'service-discovery'
-include 'service-gateway'
-include 'security-service'
-include 'zipkin-server'
-include 'carrier-simulator'
+        'customer-service',
+        'cargo-service',
+        'kafka-client',
+        'audit-service',
+        'configserver',
+        'infrastructure',
+        'routing-service',
+        'service-discovery',
+        'service-gateway',
+        'security-service',
+        'zipkin-server',
+        'carrier-simulator'
 

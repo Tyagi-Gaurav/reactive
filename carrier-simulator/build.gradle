@@ -2,33 +2,23 @@ plugins {
     id "org.springframework.boot" version "2.1.0.RELEASE"
 }
 
-bootJar {
-    baseName = 'routing-service'
-}
-
 springBoot {
-    mainClassName = "org.gt.shipping.routing.RoutingServiceApplication"
+    mainClassName = "org.gt.shipping.carrier.CarrierSimulatorApplication"
 }
 
 dependencies {
-    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-    testCompile "org.assertj:assertj-core:3.8.0"
-    testCompile "org.junit.jupiter:junit-jupiter"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-context:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-config-client:$springBootVersion"
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-    compile ("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$springBootVersion") {
-        exclude group : "javax.servlet", module: "servlet-api"
-        exclude group : "com.google.code.gson", module: "gson"
-    }
-    compile "org.springframework.cloud:spring-cloud-security:$springBootVersion"
-    compile "org.springframework.security.oauth:spring-security-oauth2:$springBootVersion"
-    compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-starter-sleuth:$springBootVersion"
-    compile "org.springframework.cloud:spring-cloud-sleuth-zipkin:$springBootVersion"
-    compile "org.springframework.security:spring-security-jwt:1.0.10.RELEASE"
-    compile "org.mongodb:mongo-java-driver"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.assertj:assertj-core:3.8.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.platform:junit-platform-commons"
+    testImplementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+    testImplementation "de.flapdoodle.embed:de.flapdoodle.embed.mongo"
+
+    api "org.springframework.boot:spring-boot-starter-web"
+    api "org.springframework.boot:spring-boot-starter-actuator"
+    api "org.springframework.cloud:spring-cloud-context"
+    api "org.springframework.cloud:spring-cloud-config-client"
+    api "org.mongodb:mongo-java-driver"
+    api "org.springframework.data:spring-data-mongodb"
 }
