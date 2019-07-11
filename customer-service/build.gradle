@@ -13,7 +13,9 @@ springBoot {
 }
 
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.platform:junit-platform-commons"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.assertj:assertj-core:3.8.0"
     api "org.springframework.boot:spring-boot-starter-web"

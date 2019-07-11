@@ -53,6 +53,7 @@ dependencyManagement {
         dependency "org.mongodb:mongo-java-driver:$mongoVersion"
         dependency "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
         dependency "org.springframework.data:spring-data-mongodb:$springBootVersion"
+        dependency "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
         dependency "de.flapdoodle.embed:de.flapdoodle.embed.mongo:$embedMongoVersion"
     }
 }

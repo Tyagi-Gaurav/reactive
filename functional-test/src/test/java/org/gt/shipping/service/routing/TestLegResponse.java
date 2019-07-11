@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value.Style(builder = "new")
 @JsonSerialize
-@JsonDeserialize(builder = ImmutableTestLegResponse.Builder.class)
+@JsonDeserialize(builder = org.gt.shipping.service.routing.ImmutableTestLegResponse.Builder.class)
 public interface TestLegResponse {
     LocalDateTime startTime();
 

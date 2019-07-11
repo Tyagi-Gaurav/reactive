@@ -11,7 +11,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value.Style(builder = "new")
 @JsonSerialize
-@JsonDeserialize(builder = ImmutableTestRoutingResponse.Builder.class)
+@JsonDeserialize(builder = org.gt.shipping.service.routing.ImmutableTestRoutingResponse.Builder.class)
 public interface TestRoutingResponse {
     List<TestLegResponse> legResponse();
 }

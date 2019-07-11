@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: audit-service
+  profiles:
+    active: dev
+database:
+  uri: mongodb+srv://m220student:m221password@mflix-hnyn8.mongodb.net
+
