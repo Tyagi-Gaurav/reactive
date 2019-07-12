@@ -1,29 +1,36 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
-        - [ ] Create Akka actor to read from leg database for a given carrier
+        - [ ] Create DAO for retrieving data from Mongo (With Spring)
+        - [ ] Akka Direct routes Carrier - Get Direct Routes From DB
+            - [ ] Akka InDirect routes Carrier - Get Direct Routes From DB
         - [ ] Setup mongoDb as database for Carrier module
+        - [ ] Configure a mock carrier.
+        - [ ] Docker for Mongo that can load data 
+        - [ ] Docker for Carrier Simulator
+        - [ ] Link Mongo Docker with carrier simulator
+        - [ ] Add above setup to local pipeline setup
         - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
         - [x] Create ETL for routes data and ingest into Mongo 
         - [x] Create Carrier Simulation Module
         - [X] Create leg information in database
+    
+    - [ ] Housekeeping
+        - [ ] All tests and pipeline passing locally.
+        - [ ] Create Travis pipeline for Cargo which can run tests.
     
     - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the legs 
           based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
           API to accept start and end location with strategy and return list of options for user from different carriers.
           - [ ] Given start and end locations, make routing service return options from a single carrier
           - [ ] Can we get test data for leg information?
-          - [ ] Configure a mock carrier.
-          - [ ] Link Mongo Docker with routing
           - [ ] Given start and end locations, make routing service return options from multiple carrier
           - [ ] Change location to be of a domain object type.
-          - [ ] Add carrier mocks  
           - [x] What is the strategy? Check DDD book.
           - [x] What data should be modeled to store leg information?
           - [x] What database to use to store this information?  
           - [x] Mongo Docker Setup
     
-    - [ ] MongoDB basic tutorial
     - [ ] Actuator video on infoq
     
     - [ ] Normalize dependencies for all projects into dependencies.gradle
