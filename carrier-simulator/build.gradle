@@ -27,6 +27,9 @@ dependencies {
     testImplementation "org.junit.platform:junit-platform-commons"
     testImplementation "org.springframework.boot:spring-boot-starter-data-mongodb"
     testImplementation "de.flapdoodle.embed:de.flapdoodle.embed.mongo"
+    testImplementation "org.mockito:mockito-core"
+    testImplementation "org.mockito:mockito-junit-jupiter"
+    testImplementation "net.bytebuddy:byte-buddy"
 
     annotationProcessor "org.immutables:value"
     api "org.immutables:value:$immutablesVersion:annotations"

@@ -15,6 +15,8 @@ ext {
     hystrixVersion = '1.5.18'
     mongoVersion = '3.10.2'
     embedMongoVersion = '2.2.0'
+    mockitoVersion = '2.25.0'
+    byteBuddyVersion = '1.9.7'
 }
 
 dependencyManagement {
@@ -22,6 +24,9 @@ dependencyManagement {
         dependency "org.junit.jupiter:junit-jupiter-api:$junitVersion"
         dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
         dependency "org.junit.platform:junit-platform-commons:$junitPlatformVersion"
+        dependency "org.mockito:mockito-core:$mockitoVersion"
+        dependency "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+        dependency "net.bytebuddy:byte-buddy:$byteBuddyVersion"
         dependency "org.immutables:value:$immutablesVersion"
         dependency "org.immutables:builder:$immutablesVersion"
         dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {

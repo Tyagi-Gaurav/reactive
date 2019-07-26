@@ -1,16 +1,18 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
-        - [ ] Create DAO for retrieving data from Mongo (With Spring)
-        - [ ] Akka Direct routes Carrier - Get Direct Routes From DB
-            - [ ] Akka InDirect routes Carrier - Get Direct Routes From DB
-        - [ ] Setup mongoDb as database for Carrier module
-        - [ ] Configure a mock carrier.
+        - [ ] Change CarrierController Service to Akka Actor
+        - [ ] Create a new actor to orchestrate the calls for different carriers
+        - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
+        - [ ] Create integration test that pre-loads subset of route data and can get data with 3 carriers
         - [ ] Docker for Mongo that can load data 
         - [ ] Docker for Carrier Simulator
         - [ ] Link Mongo Docker with carrier simulator
         - [ ] Add above setup to local pipeline setup
-        - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
+        - [ ] Setup mongoDb as database for Carrier module
+        - [x] Create DAO for retrieving data from Mongo (With Spring)
+        - [x] Akka Direct routes Carrier - Get Direct Routes From DB
+            - [x] Akka InDirect routes Carrier - Get Direct Routes From DB
         - [x] Create ETL for routes data and ingest into Mongo 
         - [x] Create Carrier Simulation Module
         - [X] Create leg information in database
