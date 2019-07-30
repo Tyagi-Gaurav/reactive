@@ -2,6 +2,7 @@ package org.gt.shipping.carrier.service;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
+import akka.actor.Terminated;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
@@ -39,8 +40,15 @@ public class CarrierControllerDAOActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(ImmutableRouteInformationRequest.class, this::onRouteInformationRequest)
-                //.match(Terminated.class, this::onTerminated)
+                .match(Terminated.class, this::onTerminated)
+                .matchAny(o -> log.error("Unknown message received {}", o))
                 .build();
+    }
+
+    private void onTerminated(Terminated terminated) {
+        log.info("Terminating actor");
+        getContext().stop(getSelf());
+        log.info("Actor Terminated");
     }
 
     private void onRouteInformationRequest(ImmutableRouteInformationRequest immutableRoute) {
