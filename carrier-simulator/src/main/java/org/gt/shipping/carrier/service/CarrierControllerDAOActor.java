@@ -1,0 +1,57 @@
+package org.gt.shipping.carrier.service;
+
+import akka.actor.AbstractActor;
+import akka.actor.Props;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
+import org.gt.shipping.carrier.domain.ImmutableRoute;
+import org.gt.shipping.carrier.domain.ImmutableRouteInformationRequest;
+import org.gt.shipping.carrier.domain.ImmutableRouteInformationResponse;
+import org.gt.shipping.carrier.repository.RouteDAO;
+
+import java.util.List;
+
+public class CarrierControllerDAOActor extends AbstractActor {
+    private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+
+    private RouteDAO routeDAO;
+
+    public CarrierControllerDAOActor(RouteDAO routeDAO) {
+        this.routeDAO = routeDAO;
+    }
+
+    public static Props props(RouteDAO routeDAO) {
+        return Props.create(CarrierControllerDAOActor.class
+                , () -> new CarrierControllerDAOActor(routeDAO));
+    }
+
+    @Override
+    public void preStart() {
+        log.info("CarrierControllerDAOActor started");
+    }
+
+    @Override
+    public void postStop() {
+        log.info("CarrierControllerDAOActor stopped");
+    }
+
+    @Override
+    public Receive createReceive() {
+        return receiveBuilder()
+                .match(ImmutableRouteInformationRequest.class, this::onRouteInformationRequest)
+                //.match(Terminated.class, this::onTerminated)
+                .build();
+    }
+
+    private void onRouteInformationRequest(ImmutableRouteInformationRequest immutableRoute) {
+        List<ImmutableRoute> allRoutes = routeDAO.findAllRoutes(
+                immutableRoute.sourceAirport(),
+                immutableRoute.destinationAirport());
+
+        ImmutableRouteInformationResponse response = ImmutableRouteInformationResponse.builder()
+                .routes(allRoutes)
+                .build();
+
+        getSender().tell(response, getSelf());
+    }
+}

@@ -17,28 +17,20 @@ ext {
     embedMongoVersion = '2.2.0'
     mockitoVersion = '2.25.0'
     byteBuddyVersion = '1.9.7'
+    akkaVersion = '2.6.0-M2'
 }
 
 dependencyManagement {
     dependencies {
-        dependency "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-        dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-        dependency "org.junit.platform:junit-platform-commons:$junitPlatformVersion"
-        dependency "org.mockito:mockito-core:$mockitoVersion"
-        dependency "org.mockito:mockito-junit-jupiter:$mockitoVersion"
-        dependency "net.bytebuddy:byte-buddy:$byteBuddyVersion"
+        //API
         dependency "org.immutables:value:$immutablesVersion"
         dependency "org.immutables:builder:$immutablesVersion"
-        dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
-            exclude 'junit:junit'
-        }
+        dependency "com.typesafe.akka:akka-actor_2.12:$akkaVersion"
+
         dependency "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-        dependency "org.assertj:assertj-core:$assertJVersion"
-        dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
         dependency "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
         dependency "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
         dependency "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
-        dependency "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 
         dependency "org.apache.kafka:kafka-clients:$kafkaVersion"
         dependency "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
@@ -60,5 +52,18 @@ dependencyManagement {
         dependency "org.springframework.data:spring-data-mongodb:$springBootVersion"
         dependency "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
         dependency "de.flapdoodle.embed:de.flapdoodle.embed.mongo:$embedMongoVersion"
+
+        //TEST
+        dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
+            exclude 'junit:junit'
+        }
+        dependency "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        dependency "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+        dependency "org.junit.platform:junit-platform-commons:$junitPlatformVersion"
+        dependency "org.mockito:mockito-core:$mockitoVersion"
+        dependency "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+        dependency "net.bytebuddy:byte-buddy:$byteBuddyVersion"
+        dependency "org.assertj:assertj-core:$assertJVersion"
+        dependency "com.typesafe.akka:akka-testkit_2.12:$akkaVersion"
     }
 }

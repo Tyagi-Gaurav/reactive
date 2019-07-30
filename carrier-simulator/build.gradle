@@ -30,6 +30,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.mockito:mockito-junit-jupiter"
     testImplementation "net.bytebuddy:byte-buddy"
+    testImplementation "com.typesafe.akka:akka-testkit_2.12"
 
     annotationProcessor "org.immutables:value"
     api "org.immutables:value:$immutablesVersion:annotations"
@@ -42,4 +43,5 @@ dependencies {
     api "org.mongodb:mongo-java-driver"
     api "org.springframework.data:spring-data-mongodb"
     api "org.springframework.boot:spring-boot-starter-data-jpa"
+    api "com.typesafe.akka:akka-actor_2.12"
 }
