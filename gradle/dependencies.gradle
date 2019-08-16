@@ -18,6 +18,7 @@ ext {
     mockitoVersion = '2.25.0'
     byteBuddyVersion = '1.9.7'
     akkaVersion = '2.6.0-M2'
+    javaxVersion = '1'
 }
 
 dependencyManagement {
@@ -26,6 +27,7 @@ dependencyManagement {
         dependency "org.immutables:value:$immutablesVersion"
         dependency "org.immutables:builder:$immutablesVersion"
         dependency "com.typesafe.akka:akka-actor_2.12:$akkaVersion"
+        dependency "com.typesafe.akka:akka-stream_2.12:$akkaVersion"
 
         dependency "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
         dependency "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
@@ -52,6 +54,7 @@ dependencyManagement {
         dependency "org.springframework.data:spring-data-mongodb:$springBootVersion"
         dependency "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
         dependency "de.flapdoodle.embed:de.flapdoodle.embed.mongo:$embedMongoVersion"
+        dependency "javax.inject:javax.inject:$javaxVersion"
 
         //TEST
         dependency("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {

@@ -1,15 +1,32 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
-        - [ ] Change CarrierController Service to Akka Actor
-        - [ ] Create a new actor to orchestrate the calls for different carriers
         - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
-        - [ ] Create integration test that pre-loads subset of route data and can get data with 3 carriers
-        - [ ] Docker for Mongo that can load data 
-        - [ ] Docker for Carrier Simulator
+        - [ ] Create functional test that can test the above setup using in-memory mongo (Includes data setup)
+            - [ ] End to End Smoke test to also do health checks
+            - [ ] Cucumber test to use test containers to bring up the application and run on that.
+        - [ ] Add hystrix command support while accessing database
+        - [ ] Add support for using metrics
+        - [ ] Integration with Prometheus
+        - [ ] Push Audit events to kafka
+        - [ ] Docker for Mongo where data can be loaded 
         - [ ] Link Mongo Docker with carrier simulator
+        - [ ] (For local testing) Docker Compose with Carrier Simulator, Prometheus, Kafka & Zookeeper, Mongo.
         - [ ] Add above setup to local pipeline setup
-        - [ ] Setup mongoDb as database for Carrier module
+            - [ ] All tests and pipeline passing locally.
+        - [ ] Create Travis pipeline for Cargo with Carrier Simulator only which can
+            - [ ] Run tests
+            - [ ] Create docker image on test
+            - [ ] Push image to docker hub
+        - [ ] Deploy to AWS Bean Stalk for testing with above 5 containers and service
+            - [ ] Be able to setup and teardown with test
+        - [ ] Deploy to GCP for kubernetes (Prod)
+        - [ ] Add NFT module for carrier simulator to be able to do 10 TPS.
+        - [ ] Explore cyclops library  (https://medium.com/@johnmcclean)
+        - [ ] Service discovery registration
+        - [ ] Add VAVR support
+
+        - [x] Change CarrierController Service to Akka Actor
         - [x] Create DAO for retrieving data from Mongo (With Spring)
         - [x] Akka Direct routes Carrier - Get Direct Routes From DB
             - [x] Akka InDirect routes Carrier - Get Direct Routes From DB
@@ -17,13 +34,10 @@
         - [x] Create Carrier Simulation Module
         - [X] Create leg information in database
     
-    - [ ] Housekeeping
-        - [ ] All tests and pipeline passing locally.
-        - [ ] Create Travis pipeline for Cargo which can run tests.
-    
     - [ ] Routing Service: `The` Routing service chooses an itinerary with a minimum total magnitude of the legs 
           based on the chosen Strategy. Calls carrier to get legs and price for the whole route.
           API to accept start and end location with strategy and return list of options for user from different carriers.
+          - [ ] Create a new actor to orchestrate the calls for different carriers from Carrier Simulator
           - [ ] Given start and end locations, make routing service return options from a single carrier
           - [ ] Can we get test data for leg information?
           - [ ] Given start and end locations, make routing service return options from multiple carrier
@@ -34,7 +48,6 @@
           - [x] Mongo Docker Setup
     
     - [ ] Actuator video on infoq
-    
     - [ ] Normalize dependencies for all projects into dependencies.gradle
     - [ ] Externalize config in smoke test to property files.
     - [ ] Update infrastructure design with current state.

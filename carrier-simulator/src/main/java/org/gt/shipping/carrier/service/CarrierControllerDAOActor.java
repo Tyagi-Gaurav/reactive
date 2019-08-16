@@ -5,18 +5,26 @@ import akka.actor.Props;
 import akka.actor.Terminated;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import com.typesafe.config.ConfigBeanFactory;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationRequest;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationResponse;
 import org.gt.shipping.carrier.repository.RouteDAO;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.util.List;
 
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CarrierControllerDAOActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     private RouteDAO routeDAO;
 
+    @Inject
     public CarrierControllerDAOActor(RouteDAO routeDAO) {
         this.routeDAO = routeDAO;
     }
