@@ -2,22 +2,25 @@
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
         - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
-        - [ ] Create functional test that can test the above setup using in-memory mongo (Includes data setup)
-            - [ ] End to End Smoke test to also do health checks
-            - [ ] Cucumber test to use test containers to bring up the application and run on that.
-        - [ ] Add hystrix command support while accessing database
-        - [ ] Add support for using metrics
-        - [ ] Integration with Prometheus
-        - [ ] Push Audit events to kafka
-        - [ ] Docker for Mongo where data can be loaded 
-        - [ ] Link Mongo Docker with carrier simulator
-        - [ ] (For local testing) Docker Compose with Carrier Simulator, Prometheus, Kafka & Zookeeper, Mongo.
-        - [ ] Add above setup to local pipeline setup
-            - [ ] All tests and pipeline passing locally.
+        - [ ] Create local test that can test the above setup using in-memory test containers (Includes data setup)
+        - [ ] Setup docker compose with just carrier controller
+        - [ ] Docker for Mongo where data can be loaded
+        - [ ] Setup cucumber for functional tests that test with docker 
+                - [ ] (No starting of application in-memory with cucumber)
+                - [ ] Application should be running and accessible
+        - [ ] Add above setup to local pipeline setup (Small tasks)
         - [ ] Create Travis pipeline for Cargo with Carrier Simulator only which can
             - [ ] Run tests
             - [ ] Create docker image on test
             - [ ] Push image to docker hub
+        - [ ] Add hystrix command support while accessing database
+        - [ ] Ability to add route data into database for a given carrier.
+        - [ ] Add support for using metrics
+        - [ ] Integration with Prometheus
+        - [ ] Push Audit events to kafka
+        - [ ] Link Mongo Docker with carrier simulator
+        - [ ] (For local testing) Docker Compose with Carrier Simulator, Prometheus, Kafka & Zookeeper, Mongo.
+        
         - [ ] Deploy to AWS Bean Stalk for testing with above 5 containers and service
             - [ ] Be able to setup and teardown with test
         - [ ] Deploy to GCP for kubernetes (Prod)
