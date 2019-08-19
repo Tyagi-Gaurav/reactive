@@ -52,7 +52,7 @@ public class CarrierControllerTest {
             .destinationAirport("destination")
             .distanceInKm(2.11)
             .price(BigDecimal.TEN)
-            .build();;
+            .build();
 
     @Test
     public void shouldReturnLegResponseGivenStartAndEndLocation() throws Exception {
@@ -85,7 +85,6 @@ public class CarrierControllerTest {
     }
 
     private List<ImmutableRoute> defaultRoute() {
-
         return Collections.singletonList(ROUTE);
     }
 

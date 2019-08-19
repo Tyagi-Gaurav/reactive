@@ -1,17 +1,23 @@
 ### Todo
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
-        - [ ] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
-        - [ ] Create local test that can test the above setup using in-memory test containers (Includes data setup)
-        - [ ] Setup docker compose with just carrier controller
-        - [ ] Docker for Mongo where data can be loaded
+        - [x] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
+        - [ ] Indirect routes sometimes appear out of order 
+        - [ ] Local build passing
+        - [ ] Create integration test with test containers that start the application and perform smoke test  
+            - [ ] Create local test that can test the above setup using in-memory test containers (Includes data setup)
+        - [ ] Setup docker compose with just carrier controller & mongo
+            - [ ] Docker for Mongo where data can be loaded
         - [ ] Setup cucumber for functional tests that test with docker 
                 - [ ] (No starting of application in-memory with cucumber)
                 - [ ] Application should be running and accessible
         - [ ] Add above setup to local pipeline setup (Small tasks)
+            - [ ] Compile, Unit Test, Integration Test 
+            - [ ] Start Docker and Run functional tests
         - [ ] Create Travis pipeline for Cargo with Carrier Simulator only which can
             - [ ] Run tests
-            - [ ] Create docker image on test
+            - [ ] Post build - Create tag
+            - [ ] Create docker image with above tag on test
             - [ ] Push image to docker hub
         - [ ] Add hystrix command support while accessing database
         - [ ] Ability to add route data into database for a given carrier.
@@ -144,6 +150,30 @@
 * No manual changes.
 * Drive everything via automation
 * Monitoring to be done before pushing changes into production.
+* Components and Functionalities to be available within a service
+    * Components functional endpoints
+    * Health checks
+    * Functional Tests
+    * Smoke Tests
+    * Metrics
+    * Hystrix
+    * Monitoring
+        * Percentiles & max for latencies
+        * Response codes
+        * OS
+            * CPU
+            * Disk
+            * Memory
+            * Threads
+            * Amount of I/O
+    * infrastructure configuration - k8 or anything else.
+    * Docker compose
+* Spring Profiles
+    * dev - Default profile
+    * local-int - Local docker compose profile
+    * functional - Local cucumber functional test profile
+    * integration - AWS bean stalk profile
+    * prod - GCP k8 profile
 
 ### Done
 - [x] Programmatically get a token to be used.

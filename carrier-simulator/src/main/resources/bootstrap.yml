@@ -1,8 +1,15 @@
 spring:
   application:
-    name: audit-service
+    name: carrier-simulator
   profiles:
     active: dev
 database:
+  #uri: mongodb+sr
   uri: mongodb+srv://m220student:m221password@mflix-hnyn8.mongodb.net
+  name: carrier-simulator
 
+---
+spring:
+  profiles: local-int
+database:
+  uri: mongodb://carrier-simulator-database:27017

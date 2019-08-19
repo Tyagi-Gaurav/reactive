@@ -19,6 +19,7 @@ ext {
     byteBuddyVersion = '1.9.7'
     akkaVersion = '2.6.0-M2'
     javaxVersion = '1'
+    testContainerVersion = '1.11.3'
 }
 
 dependencyManagement {
@@ -68,5 +69,6 @@ dependencyManagement {
         dependency "net.bytebuddy:byte-buddy:$byteBuddyVersion"
         dependency "org.assertj:assertj-core:$assertJVersion"
         dependency "com.typesafe.akka:akka-testkit_2.12:$akkaVersion"
+        dependency "org.testcontainers:testcontainers:$testContainerVersion"
     }
 }

@@ -15,6 +15,10 @@ plugins {
 
 apply plugin: "net.ltgt.apt"
 
+bootJar {
+    archiveFileName = 'carrier-simulator.jar'
+}
+
 springBoot {
     mainClassName = "org.gt.shipping.carrier.CarrierSimulatorApplication"
 }
@@ -32,6 +36,7 @@ dependencies {
     testImplementation "net.bytebuddy:byte-buddy"
     testImplementation "com.typesafe.akka:akka-testkit_2.12"
     testImplementation "com.typesafe.akka:akka-stream_2.12"
+    testImplementation "org.testcontainers:testcontainers"
 
     annotationProcessor "org.immutables:value"
     api "org.immutables:value:$immutablesVersion:annotations"
