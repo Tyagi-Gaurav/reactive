@@ -6,6 +6,8 @@ import akka.testkit.javadsl.TestKit;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationRequest;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationResponse;
+import org.gt.shipping.carrier.domain.ImmutableRouteNode;
+import org.gt.shipping.carrier.domain.RouteNode;
 import org.gt.shipping.carrier.repository.RouteDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,11 +50,11 @@ public class CarrierControllerDAOActorTest {
         ActorRef actorRef = actorSystem.actorOf(CarrierControllerDAOActor.props(routeDAO));
         String sourceAirport = "source";
         String destinationAirport = "destination";
-        List<ImmutableRoute> expectedRoutes = defaultRoute(sourceAirport, destinationAirport);
+        RouteNode expectedRoutes = defaultRoute(sourceAirport, destinationAirport);
         ImmutableRouteInformationResponse expectedResponse = ImmutableRouteInformationResponse.builder()
                 .routes(expectedRoutes)
                 .build();
-        given(routeDAO.findAllRoutes(sourceAirport, destinationAirport))
+        given(routeDAO.findRouteGraph(sourceAirport, destinationAirport))
                 .willReturn(expectedRoutes);
 
         //when
@@ -66,25 +68,26 @@ public class CarrierControllerDAOActorTest {
         assertThat(expectedResponse).isEqualTo(probe.expectMsgAnyClassOf(ImmutableRouteInformationResponse.class));
     }
 
-    private List<ImmutableRoute> defaultRoute(String sourceAirport, String destinationAirport) {
-        return Collections.singletonList(ImmutableRoute.builder()
-                .destinationAirport(destinationAirport)
-                .sourceAirport(sourceAirport)
-                .id("test")
-                .addLegs(ImmutableRoute.builder()
-                                .sourceAirport(sourceAirport)
-                                .destinationAirport("DEL")
-                                .id("test.1")
-                                .price(BigDecimal.valueOf(2.3))
-                                .distanceInKm(200).build(),
-                        ImmutableRoute.builder()
-                                .sourceAirport("DEL")
-                                .destinationAirport(destinationAirport)
-                                .id("test.2")
-                                .price(BigDecimal.valueOf(3.5))
-                                .distanceInKm(300).build())
-                .distanceInKm(333)
-                .price(BigDecimal.TEN)
-                .build());
+    private RouteNode defaultRoute(String sourceAirport, String destinationAirport) {
+        return ImmutableRouteNode.builder().build();
+//        return ImmutableRoute.builder()
+//                .destinationAirport(destinationAirport)
+//                .sourceAirport(sourceAirport)
+//                .id("test")
+//                .addLegs(ImmutableRoute.builder()
+//                                .sourceAirport(sourceAirport)
+//                                .destinationAirport("DEL")
+//                                .id("test.1")
+//                                .price(BigDecimal.valueOf(2.3))
+//                                .distanceInKm(200).build(),
+//                        ImmutableRoute.builder()
+//                                .sourceAirport("DEL")
+//                                .destinationAirport(destinationAirport)
+//                                .id("test.2")
+//                                .price(BigDecimal.valueOf(3.5))
+//                                .distanceInKm(300).build())
+//                .distanceInKm(333)
+//                .price(BigDecimal.TEN)
+//                .build();
     }
 }

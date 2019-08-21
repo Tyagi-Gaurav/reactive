@@ -5,6 +5,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
+import org.gt.shipping.carrier.domain.ImmutableRouteEdge;
+import org.gt.shipping.carrier.domain.ImmutableRouteNode;
+import org.gt.shipping.carrier.domain.RouteNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,14 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
-import static java.util.stream.Collectors.*;
+import static org.gt.shipping.carrier.domain.ImmutableRouteNode.copyOf;
+import static org.gt.shipping.carrier.domain.ImmutableRouteNode.of;
 
 @Component
 public class RouteDAO {
@@ -32,18 +32,7 @@ public class RouteDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public List<ImmutableRoute> findDirectRoutes(String source, String destination) {
-        MongoCollection<Document> collection = mongoTemplate.getCollection(this.collection);
-
-        FindIterable<Document> documents = collection.find(Filters.and(
-                Filters.eq("route.dest_apt", destination),
-                Filters.eq("route.src_apt", source)
-        ));
-
-        return mapFrom(documents);
-    }
-
-    public List<ImmutableRoute> findAllRoutes(String source, String destination) {
+    public RouteNode findRouteGraph(String source, String destination) {
         List<ImmutableRoute> routes = getRoutesFor("route.src_apt", source);
         routes.addAll(getRoutesFor("route.dest_apt", destination));
 
@@ -53,53 +42,24 @@ public class RouteDAO {
                                 stringImmutableRouteHashMap.putIfAbsent(immutableRoute.id(), immutableRoute),
                         HashMap::putAll);
 
-        List<ImmutableRoute> allRoutes = new ArrayList<>();
+        Map<String, RouteNode> nodeMap = new HashMap<>();
+        uniqueRoutes.values().forEach(immutableRoute -> {
+                nodeMap.putIfAbsent(immutableRoute.sourceAirport(), of(immutableRoute.sourceAirport(), new ArrayList<>()));
+                nodeMap.putIfAbsent(immutableRoute.destinationAirport(), of(immutableRoute.destinationAirport(), new ArrayList<>()));
+        });
 
-        List<ImmutableRoute> directRoutes = uniqueRoutes.values()
-                .stream()
-                .filter(immutableRoute -> isDirectRoute(source, destination, immutableRoute))
-                .collect(Collectors.toList());
+        uniqueRoutes.values().forEach(route -> addEdgeToGraph(route, nodeMap));
 
-        Map<String, List<ImmutableRoute>> indirectRoutes = uniqueRoutes.values()
-                .stream()
-                .filter(immutableRoute -> !isDirectRoute(source, destination, immutableRoute))
-                .collect(groupingBy(commonDestination(source), mapping(Function.identity(), toList())));
-
-
-        allRoutes.addAll(directRoutes);
-        allRoutes.addAll(indirectRoutes.values()
-                .stream()
-                .map(iroutes -> ImmutableRoute.builder().legs(iroutes)
-                        .id(UUID.randomUUID().toString())
-                        .distanceInKm(iroutes.stream().mapToDouble(ImmutableRoute::distanceInKm).sum())
-                        .sourceAirport(source)
-                        .destinationAirport(destination)
-                        .price(iroutes.stream().map(ImmutableRoute::price).reduce(BigDecimal.ZERO, BigDecimal::add))
-                        .build())
-                .collect(toList()));
-
-        return allRoutes;
+        return nodeMap.get(source);
     }
 
-    private Function<ImmutableRoute, String> commonDestination(String source) {
-        return immutableRoute -> {
-            if (immutableRoute.sourceAirport().equals(source)) {
-                return immutableRoute.destinationAirport();
-            } else {
-                return immutableRoute.sourceAirport();
-            }
-        };
-    }
+    private void addEdgeToGraph(ImmutableRoute route, Map<String, RouteNode> nodeMap) {
+        RouteNode sourceAirport = nodeMap.get(route.sourceAirport());
+        RouteNode destinationAirport = nodeMap.get(route.destinationAirport());
 
-    private boolean isDirectRoute(String source, String destination, ImmutableRoute immutableRoute) {
-        return immutableRoute.sourceAirport().equals(source) &&
-                immutableRoute.destinationAirport().equals(destination);
-    }
-
-    private Optional<ImmutableRoute> getLegs(List<ImmutableRoute> routesToDestination, String destinationAirport) {
-        return routesToDestination.stream()
-                .filter(route -> route.sourceAirport().equals(destinationAirport))
-                .findFirst();
+        nodeMap.replace(sourceAirport.airport(),
+                ImmutableRouteNode.builder().from(sourceAirport)
+                .addEdges(ImmutableRouteEdge.of(route, destinationAirport)).build());
     }
 
     private List<ImmutableRoute> getRoutesFor(String fieldName, String fieldValue) {

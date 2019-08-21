@@ -3,7 +3,10 @@ package org.gt.shipping.carrier.repository;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
-import org.gt.shipping.carrier.domain.Route;
+import org.gt.shipping.carrier.domain.ImmutableRouteEdge;
+import org.gt.shipping.carrier.domain.ImmutableRouteNode;
+import org.gt.shipping.carrier.domain.RouteEdge;
+import org.gt.shipping.carrier.domain.RouteNode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +19,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,18 +41,20 @@ public class RouteDAOTest {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    private List<Document> dbRecords;
 
     @BeforeEach
     void setUp() {
         mongoTemplate.createCollection(COLLECTION);
         MongoCollection<Document> collection = mongoTemplate.getCollection(COLLECTION);
-        collection.insertMany(Arrays.asList(
+        dbRecords = Arrays.asList(
                 getRouteDocument("JFK", "LHR", 189.39, "18.20", "VG", "eee", "1", "11"),
                 getRouteDocument("JFK", "DEL", 2387.39, "1338.11", "VG", "eee", "1", "22"),
                 getRouteDocument("DEL", "CHG", 213.39, "4234.11", "VG", "eee", "1", "33"),
                 getRouteDocument("DEL", "LHR", 213.39, "4234.11", "VG", "eee", "1", "44")
 
-        ));
+        );
+        collection.insertMany(dbRecords);
     }
 
     @AfterEach
@@ -76,7 +85,7 @@ public class RouteDAOTest {
     }
 
     @Test
-    void shouldHaveAppropriateAnnotations() throws Exception {
+    void shouldHaveAppropriateAnnotations() {
         //When & Then
         assertThat(RouteDAO.class.isAnnotationPresent(Component.class)).isTrue();
     }
@@ -88,40 +97,40 @@ public class RouteDAOTest {
         String destination = "LHR";
 
         //When
-        List<ImmutableRoute> routes = routeDAO.findDirectRoutes(source, destination);
+        RouteNode routeNode = routeDAO.findRouteGraph(source, destination);
 
         //Then
-        assertThat(routes.size()).isEqualTo(1);
-        assertThat(routes.get(0).destinationAirport()).isEqualTo(destination);
-        assertThat(routes.get(0).sourceAirport()).isEqualTo(source);
+        assertThat(routeNode).isNotNull();
+        assertThat(routeNode.edges().size()).isEqualTo(2);
+        List<RouteEdge> edgesFor = getEdgesFor(source);
+        assertThat(routeNode.edges())
+                .usingElementComparatorIgnoringFields("id")
+                .containsExactlyInAnyOrder(edgesFor.get(0), edgesFor.get(1));
     }
 
-    @Test
-    void shouldRetrieveIndirectRoutesFromDatabase() {
-        //given
-        String source = "JFK";
-        String destination = "LHR";
+    private List<RouteEdge> getEdgesFor(String sourceAirport) {
+        return dbRecords.stream()
+                .filter(record -> getFieldFrom(record, "src_apt").equals(sourceAirport))
+                .map(record -> ImmutableRouteEdge.builder()
+                        .destination(ImmutableRouteNode.of(getFieldFrom(record, "dest_apt"),
+                                Collections.emptyList()))
+                        .route(ImmutableRoute.builder()
+                                .price(new BigDecimal(getFieldFrom(record, "price")))
+                                .distanceInKm(Double.valueOf(getFieldFrom(record, "distance_in_km")))
+                                .sourceAirport(getFieldFrom(record, "src_apt"))
+                                .destinationAirport(getFieldFrom(record, "dest_apt"))
+                                .id("")
+                                .airlineCode(getFieldFrom(record, "airline_code"))
+                                .airlineId(getFieldFrom(record, "airline_id"))
+                                .codeShare(getFieldFrom(record, "code_share"))
+                                .equipCode(getFieldFrom(record, "equip_code"))
+                                .build())
+                        .build())
+                .collect(Collectors.toList());
+    }
 
-        //When
-        List<ImmutableRoute> routes = routeDAO.findAllRoutes(source, destination);
-
-        //Then
-        assertThat(routes.size()).isEqualTo(2);
-        ImmutableRoute directRoute = routes.get(0);
-        assertThat(directRoute.destinationAirport()).isEqualTo(destination);
-        assertThat(directRoute.sourceAirport()).isEqualTo(source);
-        assertThat(directRoute.legs()).isEmpty();
-
-        ImmutableRoute indirectRoute = routes.get(1);
-        assertThat(indirectRoute.destinationAirport()).isEqualTo(destination);
-        assertThat(indirectRoute.sourceAirport()).isEqualTo(source);
-        assertThat(indirectRoute.legs().size()).isEqualTo(2);
-
-        Route leg1 = indirectRoute.legs().get(0);
-        Route leg2 = indirectRoute.legs().get(1);
-        assertThat(leg1.sourceAirport()).isEqualTo(source);
-        assertThat(leg1.destinationAirport()).isEqualTo("DEL");
-        assertThat(leg2.sourceAirport()).isEqualTo("DEL");
-        assertThat(leg2.destinationAirport()).isEqualTo(destination);
+    private String getFieldFrom(Document record, String fieldName) {
+        System.out.println("Looking for field: " + fieldName);
+        return ((Document) record.get("route")).get(fieldName).toString();
     }
 }
