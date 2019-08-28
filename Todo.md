@@ -168,6 +168,7 @@
             * Amount of I/O
     * infrastructure configuration - k8 or anything else.
     * Docker compose
+    * Rate Limiting
 * Spring Profiles
     * dev - Default profile
     * local-int - Local docker compose profile

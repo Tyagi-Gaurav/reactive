@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import static java.util.Objects.isNull;
-import static org.gt.shipping.carrier.domain.ImmutableRouteNode.copyOf;
 import static org.gt.shipping.carrier.domain.ImmutableRouteNode.of;
 
 @Component

@@ -14,6 +14,7 @@ import java.util.List;
 @JsonSerialize
 @JsonDeserialize(builder = org.gt.shipping.carrier.domain.ImmutableRoute.Builder.class)
 public interface Route {
+    @Value.Auxiliary
     String id();
     String sourceAirport();
     String destinationAirport();

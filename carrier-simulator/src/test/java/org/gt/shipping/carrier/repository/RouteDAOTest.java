@@ -91,46 +91,49 @@ public class RouteDAOTest {
     }
 
     @Test
-    void shouldRetrieveDirectRoutesFromDatabase() {
+    void shouldRetrieveRoutesFromDatabase() {
         //given
         String source = "JFK";
         String destination = "LHR";
+        RouteNode expectedRouteNode = getExpectedRouteNode();
 
         //When
         RouteNode routeNode = routeDAO.findRouteGraph(source, destination);
 
         //Then
         assertThat(routeNode).isNotNull();
-        assertThat(routeNode.edges().size()).isEqualTo(2);
-        List<RouteEdge> edgesFor = getEdgesFor(source);
+        assertThat(routeNode.edges().size()).isEqualTo(expectedRouteNode.edges().size());
+        assertThat(routeNode.airport()).isEqualTo(expectedRouteNode.airport());
         assertThat(routeNode.edges())
-                .usingElementComparatorIgnoringFields("id")
-                .containsExactlyInAnyOrder(edgesFor.get(0), edgesFor.get(1));
+                //.usingElementComparatorIgnoringFields("id")
+                .containsOnlyElementsOf(expectedRouteNode.edges());
     }
 
-    private List<RouteEdge> getEdgesFor(String sourceAirport) {
-        return dbRecords.stream()
-                .filter(record -> getFieldFrom(record, "src_apt").equals(sourceAirport))
-                .map(record -> ImmutableRouteEdge.builder()
-                        .destination(ImmutableRouteNode.of(getFieldFrom(record, "dest_apt"),
-                                Collections.emptyList()))
-                        .route(ImmutableRoute.builder()
-                                .price(new BigDecimal(getFieldFrom(record, "price")))
-                                .distanceInKm(Double.valueOf(getFieldFrom(record, "distance_in_km")))
-                                .sourceAirport(getFieldFrom(record, "src_apt"))
-                                .destinationAirport(getFieldFrom(record, "dest_apt"))
-                                .id("")
-                                .airlineCode(getFieldFrom(record, "airline_code"))
-                                .airlineId(getFieldFrom(record, "airline_id"))
-                                .codeShare(getFieldFrom(record, "code_share"))
-                                .equipCode(getFieldFrom(record, "equip_code"))
-                                .build())
-                        .build())
-                .collect(Collectors.toList());
+    private RouteNode getExpectedRouteNode() {
+        ImmutableRouteNode lhrAirport = ImmutableRouteNode.of("LHR", Collections.emptyList());
+        ImmutableRouteNode delAirport = ImmutableRouteNode.of("DEL", Collections.singletonList(getEdgesFor(dbRecords.get(3), lhrAirport)));
+        List<RouteEdge> edgesForJfk = Arrays.asList(getEdgesFor(dbRecords.get(0), lhrAirport), getEdgesFor(dbRecords.get(1), delAirport));
+
+        return ImmutableRouteNode.of("JFK", edgesForJfk);
+    }
+
+    private RouteEdge getEdgesFor(Document document, RouteNode destination) {
+        return ImmutableRouteEdge.builder()
+                .destination(destination)
+                .route(ImmutableRoute.builder()
+                        .price(new BigDecimal(getFieldFrom(document, "price")))
+                        .distanceInKm(Double.valueOf(getFieldFrom(document, "distance_in_km")))
+                        .sourceAirport(getFieldFrom(document, "src_apt"))
+                        .destinationAirport(getFieldFrom(document, "dest_apt"))
+                        .id("")
+                        .airlineCode(getFieldFrom(document, "airline_code"))
+                        .airlineId(getFieldFrom(document, "airline_id"))
+                        .codeShare(getFieldFrom(document, "code_share"))
+                        .equipCode(getFieldFrom(document, "equip_code"))
+                        .build()).build();
     }
 
     private String getFieldFrom(Document record, String fieldName) {
-        System.out.println("Looking for field: " + fieldName);
         return ((Document) record.get("route")).get(fieldName).toString();
     }
 }
