@@ -3,37 +3,41 @@
     - [ ] Carrier Simulation
         - [x] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
         - [x] Indirect routes sometimes appear out of order 
-        - [ ] Local build passing
-        - [ ] Create integration test with test containers that start the application and perform smoke test  
-            - [ ] Create local test that can test the above setup using in-memory test containers (Includes data setup)
-        - [ ] Setup docker compose with just carrier controller & mongo
-            - [ ] Docker for Mongo where data can be loaded
-        - [ ] Setup cucumber for functional tests that test with docker 
-                - [ ] (No starting of application in-memory with cucumber)
-                - [ ] Application should be running and accessible
-        - [ ] Add above setup to local pipeline setup (Small tasks)
-            - [ ] Compile, Unit Test, Integration Test 
-            - [ ] Start Docker and Run functional tests
+        - [x] Local build passing
         - [ ] Create Travis pipeline for Cargo with Carrier Simulator only which can
             - [ ] Run tests
-            - [ ] Post build - Create tag
+            - [ ] Post build - Create tag for releasable components
             - [ ] Create docker image with above tag on test
             - [ ] Push image to docker hub
-        - [ ] Add hystrix command support while accessing database
+        - [ ] Setup cucumber for functional tests that test with docker 
+            - [ ] Start mongo container with data
+            - [ ] Start application container that can communicate with mongo container
+            - [ ] Run functional tests 
+            - [ ] Run functional tests in parallel 
+            - [ ] (No starting of application in-memory with cucumber)
+            - [ ] Application should be running and accessible
+        - [ ] Setup docker compose with just carrier controller & mongo
+            - [ ] Docker for Mongo where data can be loaded
+            - [ ] Link Mongo Docker with carrier simulator
+        - [ ] Add above setup to local pipeline setup (Small tasks)
+            - [ ] Compile
+            - [ ] Unit Test
+            - [ ] Functional Test  
+            - [ ] Check if container has healthcheck endpoint
+            - [ ] Check if container has status endpoint
+        - [ ] Deploy to AWS Bean Stalk for testing with above 1 carrier controller and service
+            - [ ] Be able to setup and teardown with test
+        - [ ] Deploy to GCP for kubernetes (Prod)
+        - [ ] Add hystrix command support while accessing database (New Hystrix)
         - [ ] Ability to add route data into database for a given carrier.
         - [ ] Add support for using metrics
         - [ ] Integration with Prometheus
         - [ ] Push Audit events to kafka
-        - [ ] Link Mongo Docker with carrier simulator
+        - [ ] How to ensure application does not need to register for monitoring
         - [ ] (For local testing) Docker Compose with Carrier Simulator, Prometheus, Kafka & Zookeeper, Mongo.
-        
-        - [ ] Deploy to AWS Bean Stalk for testing with above 5 containers and service
-            - [ ] Be able to setup and teardown with test
-        - [ ] Deploy to GCP for kubernetes (Prod)
         - [ ] Add NFT module for carrier simulator to be able to do 10 TPS.
         - [ ] Explore cyclops library  (https://medium.com/@johnmcclean)
         - [ ] Service discovery registration
-        - [ ] Add VAVR support
 
         - [x] Change CarrierController Service to Akka Actor
         - [x] Create DAO for retrieving data from Mongo (With Spring)
