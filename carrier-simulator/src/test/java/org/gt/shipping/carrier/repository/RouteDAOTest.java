@@ -105,7 +105,6 @@ public class RouteDAOTest {
         assertThat(routeNode.edges().size()).isEqualTo(expectedRouteNode.edges().size());
         assertThat(routeNode.airport()).isEqualTo(expectedRouteNode.airport());
         assertThat(routeNode.edges())
-                //.usingElementComparatorIgnoringFields("id")
                 .containsOnlyElementsOf(expectedRouteNode.edges());
     }
 

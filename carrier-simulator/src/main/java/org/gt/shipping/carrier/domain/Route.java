@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.immutables.value.Value;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 
 @Value.Immutable
@@ -20,7 +19,6 @@ public interface Route {
     String destinationAirport();
     double distanceInKm();
     BigDecimal price();
-    List<Route> legs();
 
     @Value.Default
     default String airlineCode() {

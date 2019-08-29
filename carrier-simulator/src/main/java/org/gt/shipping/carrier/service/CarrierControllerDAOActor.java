@@ -5,7 +5,6 @@ import akka.actor.Props;
 import akka.actor.Terminated;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import org.gt.shipping.carrier.domain.ImmutableRoute;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationRequest;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationResponse;
 import org.gt.shipping.carrier.repository.RouteDAO;
@@ -14,8 +13,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import java.util.Collections;
-import java.util.List;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -60,14 +57,10 @@ public class CarrierControllerDAOActor extends AbstractActor {
     }
 
     private void onRouteInformationRequest(ImmutableRouteInformationRequest immutableRoute) {
-//        List<ImmutableRoute> allRoutes = routeDAO.findAllRoutes(
-//                immutableRoute.sourceAirport(),
-//                immutableRoute.destinationAirport());
-
-        List<ImmutableRoute> allRoutes = Collections.emptyList();
-
         ImmutableRouteInformationResponse response = ImmutableRouteInformationResponse.builder()
-                //.routes(allRoutes)
+                .routes(routeDAO.findRouteGraph(
+                        immutableRoute.sourceAirport(),
+                        immutableRoute.destinationAirport()))
                 .build();
 
         getSender().tell(response, getSelf());

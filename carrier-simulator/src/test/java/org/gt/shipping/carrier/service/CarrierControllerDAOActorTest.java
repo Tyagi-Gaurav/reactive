@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.testkit.javadsl.TestKit;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
+import org.gt.shipping.carrier.domain.ImmutableRouteEdge;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationRequest;
 import org.gt.shipping.carrier.domain.ImmutableRouteInformationResponse;
 import org.gt.shipping.carrier.domain.ImmutableRouteNode;
@@ -18,7 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -69,25 +69,16 @@ public class CarrierControllerDAOActorTest {
     }
 
     private RouteNode defaultRoute(String sourceAirport, String destinationAirport) {
-        return ImmutableRouteNode.builder().build();
-//        return ImmutableRoute.builder()
-//                .destinationAirport(destinationAirport)
-//                .sourceAirport(sourceAirport)
-//                .id("test")
-//                .addLegs(ImmutableRoute.builder()
-//                                .sourceAirport(sourceAirport)
-//                                .destinationAirport("DEL")
-//                                .id("test.1")
-//                                .price(BigDecimal.valueOf(2.3))
-//                                .distanceInKm(200).build(),
-//                        ImmutableRoute.builder()
-//                                .sourceAirport("DEL")
-//                                .destinationAirport(destinationAirport)
-//                                .id("test.2")
-//                                .price(BigDecimal.valueOf(3.5))
-//                                .distanceInKm(300).build())
-//                .distanceInKm(333)
-//                .price(BigDecimal.TEN)
-//                .build();
+        ImmutableRoute route = ImmutableRoute.builder()
+                .destinationAirport(destinationAirport)
+                .sourceAirport(sourceAirport)
+                .id("test")
+                .distanceInKm(333)
+                .price(BigDecimal.TEN)
+                .build();
+        return ImmutableRouteNode.builder()
+                .airport(sourceAirport)
+                .addEdges(ImmutableRouteEdge.of(route, ImmutableRouteNode.of(destinationAirport, Collections.emptyList())))
+                .build();
     }
 }

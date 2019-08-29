@@ -7,6 +7,7 @@ import org.bson.Document;
 import org.gt.shipping.carrier.domain.ImmutableRoute;
 import org.gt.shipping.carrier.domain.ImmutableRouteEdge;
 import org.gt.shipping.carrier.domain.ImmutableRouteNode;
+import org.gt.shipping.carrier.domain.Route;
 import org.gt.shipping.carrier.domain.RouteNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 import static org.gt.shipping.carrier.domain.ImmutableRouteNode.of;
@@ -41,24 +44,33 @@ public class RouteDAO {
                                 stringImmutableRouteHashMap.putIfAbsent(immutableRoute.id(), immutableRoute),
                         HashMap::putAll);
 
-        Map<String, RouteNode> nodeMap = new HashMap<>();
+        Map<String, RouteNode> airportMap = new HashMap<>();
+        Map<String, List<Route>> prospectiveEdges = new HashMap<>();
         uniqueRoutes.values().forEach(immutableRoute -> {
-                nodeMap.putIfAbsent(immutableRoute.sourceAirport(), of(immutableRoute.sourceAirport(), new ArrayList<>()));
-                nodeMap.putIfAbsent(immutableRoute.destinationAirport(), of(immutableRoute.destinationAirport(), new ArrayList<>()));
+                prospectiveEdges.putIfAbsent(immutableRoute.sourceAirport(), new ArrayList());
+                prospectiveEdges.putIfAbsent(immutableRoute.destinationAirport(), new ArrayList<>());
         });
 
-        uniqueRoutes.values().forEach(route -> addEdgeToGraph(route, nodeMap));
+        uniqueRoutes.values().forEach(route -> addEdgeToGraph(route, prospectiveEdges));
 
-        return nodeMap.get(source);
+        return createGraphFor(airportMap, prospectiveEdges, source);
     }
 
-    private void addEdgeToGraph(ImmutableRoute route, Map<String, RouteNode> nodeMap) {
-        RouteNode sourceAirport = nodeMap.get(route.sourceAirport());
-        RouteNode destinationAirport = nodeMap.get(route.destinationAirport());
+    private RouteNode createGraphFor(Map<String, RouteNode> airportMap,
+                                     Map<String, List<Route>> prospectiveEdges,
+                                     String next) {
+        List<Route> routes = prospectiveEdges.get(next);
+        List<ImmutableRouteEdge> edges = routes.stream().map(route -> {
+            Optional<RouteNode> routeNode = Optional.ofNullable(airportMap.get(next));
+            return ImmutableRouteEdge.of(route, routeNode.orElse(createGraphFor(airportMap, prospectiveEdges, route.destinationAirport())));
+        }).collect(Collectors.toList());
+        ImmutableRouteNode routeNode = of(next, edges);
+        airportMap.putIfAbsent(next, routeNode);
+        return routeNode;
+    }
 
-        nodeMap.replace(sourceAirport.airport(),
-                ImmutableRouteNode.builder().from(sourceAirport)
-                .addEdges(ImmutableRouteEdge.of(route, destinationAirport)).build());
+    private void addEdgeToGraph(ImmutableRoute route, Map<String, List<Route>> prospectiveEdges) {
+        prospectiveEdges.get(route.sourceAirport()).add(route);
     }
 
     private List<ImmutableRoute> getRoutesFor(String fieldName, String fieldValue) {
@@ -88,7 +100,6 @@ public class RouteDAO {
                         .airlineId(route.getString("airline_id"))
                         .codeShare(route.getString("code_share"))
                         .equipCode(route.getString("equip_code"))
-                        .legs(new ArrayList<>())
                         .build());
             }
         });

@@ -2,7 +2,7 @@
 - [ ] Create infrastructure with all service skeletons for dev environment
     - [ ] Carrier Simulation
         - [x] Create Rest Resource that can take GET /carrier/{name}/?startLoc=xxx&endLoc=yyy and return list of legs
-        - [ ] Indirect routes sometimes appear out of order 
+        - [x] Indirect routes sometimes appear out of order 
         - [ ] Local build passing
         - [ ] Create integration test with test containers that start the application and perform smoke test  
             - [ ] Create local test that can test the above setup using in-memory test containers (Includes data setup)
